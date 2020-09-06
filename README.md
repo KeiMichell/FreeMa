@@ -31,7 +31,7 @@
 |block|string|null: false|
 |buildung|string||
 |phone_number|string||
-|user_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -40,7 +40,7 @@
 |------|----|-------|
 |card_id|string|null: false|
 |customer_id|string|null: false|
-|user_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -55,9 +55,9 @@
 |delivery_fee|string|null: false|
 |prefecture_id|integer|null: false|
 |delivery_day|string|null: false|
-|brand_id|integer|foreign_key: true|
-|category_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
+|brand_id|references|foreign_key: true|
+|category_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Association
 - has_many :images
 - belongs_to :user
@@ -68,7 +68,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|item_id|integer|null: false, foreign_key: true|
+|item_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :item
 
