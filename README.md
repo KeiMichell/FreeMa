@@ -26,7 +26,7 @@
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |postcode|string|null: false|
-|prefecture_id|integer|null: false|
+|prefecture|string|null: false|
 |city|string|null: false|
 |block|string|null: false|
 |buildung|string||
@@ -54,7 +54,7 @@
 |size|string|null: false|
 |states|string|null: false|
 |delivery_fee|string|null: false|
-|prefecture_id|integer|null: false|
+|prefecture|string|null: false|
 |delivery_day|string|null: false|
 |brand|references|foreign_key: true|
 |category|references|null: false, foreign_key: true|
