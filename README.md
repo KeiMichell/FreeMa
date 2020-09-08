@@ -34,6 +34,7 @@
 |user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
+- belongs_to_active_hash :prefecture
 
 ## Cardsテーブル
 |Column|Type|Options|
@@ -63,6 +64,7 @@
 - belongs_to :user
 - belongs_to :category
 - belongs_to :brand
+- belongs_to_active_hash :prefecture
 
 ## Imagesテーブル
 |Column|Type|Options|
