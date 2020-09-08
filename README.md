@@ -31,7 +31,7 @@
 |block|string|null: false|
 |buildung|string||
 |phone_number|string||
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -40,7 +40,7 @@
 |------|----|-------|
 |card_id|string|null: false|
 |customer_id|string|null: false|
-|user_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -55,9 +55,9 @@
 |delivery_fee|string|null: false|
 |prefecture_id|integer|null: false|
 |delivery_day|string|null: false|
-|brand_id|references|foreign_key: true|
-|category_id|references|null: false, foreign_key: true|
-|user_id|references|null: false, foreign_key: true|
+|brand|references|foreign_key: true|
+|category|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 ### Association
 - has_many :images
 - belongs_to :user
@@ -68,7 +68,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|item_id|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :item
 
@@ -76,13 +76,13 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|parent_id|integer|null: false|
+|ancestry|string|null: false|
 ### Association
 - has_many :items
 
 ## Brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string||
+|name|string|null: false|
 ### Association
 - has_many :items
