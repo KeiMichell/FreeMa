@@ -1,4 +1,6 @@
 class Address < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   # Validation_definition
   VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
   VALID_KANA_REGEX = /\A[ぁ-んー－]+\z/
@@ -19,5 +21,6 @@ class Address < ApplicationRecord
 
   # Association
   belongs_to :user, optional: true
-  
+  belongs_to_active_hash :prefecture
+
 end
