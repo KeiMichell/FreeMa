@@ -24,4 +24,7 @@ class User < ApplicationRecord
             format: { with: VALID_KANA_REGEX, message: "全角ひらがなで入力してください" }
   validates :birthday, presence: true
 
+  # Association
+  has_one :address
+
 end
