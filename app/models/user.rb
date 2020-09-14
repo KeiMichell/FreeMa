@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true, 
             format: { with: VALID_EMAIL_REGEX, message: "フォーマットが不適切です" }
-  validates :encrypted_password, presence: true,length: { minimum: 7 }
+  validates :encrypted_password, presence: true
   validates :last_name, presence: true, length: { maximum: 30 },
             format: { with: VALID_NAME_REGEX, message: "全角ひらがな、全角カタカナ、漢字で入力してください" }
   validates :first_name, presence: true,  length: { maximum: 30 },
