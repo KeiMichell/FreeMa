@@ -1,9 +1,5 @@
 // 共通設定
 
-* {
-  box-sizing: border-box;
-}
-
 a {
   color: #3CCACE;
   text-decoration: none;
@@ -16,7 +12,6 @@ div {
 ul {
   display: block;
 }
-
 
 h2 {
   display: block;
@@ -133,7 +128,7 @@ h2 {
 .optional{
   
   &__btn {
-    margin: 10px 0 0;
+    margin: 15px 0 0;
     display: flex;
     justify-content: space-between;
     &--like {
@@ -151,14 +146,17 @@ h2 {
     &--flag {
       padding: 6px 10px;
       border-radius: 4px;
-      color: #333;
       border: 1px solid #333;
       text-decoration: none;
+    }
+    &--report {
+      color: #333;
     }
     &--flag:hover {
       opacity: 0.5;
       filter: brightness(100%);
     }
+
   }
 }
 
@@ -171,9 +169,10 @@ h2 {
   margin: 10px 0;
   text-align: center;
   &__new {
-    width: 100%;
-  min-height: 104px;
-  padding: 10px;
+    width: 96%;
+    min-height: 104px;
+    padding: 10px;
+    box-sizing: border-box;
   }
   &__notice {
     font-size: 14px;
