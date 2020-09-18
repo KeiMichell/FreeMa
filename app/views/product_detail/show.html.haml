@@ -36,12 +36,12 @@
           .itemBox__body
             %ul
               %li
-                %img.itemBox__body--top(src="https://source.unsplash.com/random" alt="")/
+                = image_tag src='/assets/tozan_kutsu.png', alt: "Top Image", class: "itemBox__body--top"
                 %ul.itemBox__body--bottom
                   %li
-                    %img.itemBox__body--left(src="https://source.unsplash.com/random" alt="")/
+                    = image_tag src='/assets/tozan_kutsu.png', alt: "Left Image", class: "itemBox__body--left"
                   %li
-                    %img.itemBox__body--right(src="https://source.unsplash.com/random" alt="")/
+                    = image_tag src='/assets/tozan_kutsu.png', alt: "Left Image", class: "itemBox__body--right"
         
           .itemBox__price
             %span.itemBox__price--number
@@ -129,7 +129,7 @@
             ベビー・キッズをもっと見る
           
             = link_to "#", class: "relatedItems__product" do
-              %img.relatedItems__product--image(src="https://source.unsplash.com/random" alt="")
+              = image_tag src='/assets/tozan_kutsu.png', alt: "Left Image", class: "relatedItems__product--image"
               .relatedItems__product--body
                 .relatedItems__product--name product3
                 %ul.relatedItems__product--details
