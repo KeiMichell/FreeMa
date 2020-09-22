@@ -6,7 +6,7 @@ class Address < ApplicationRecord
   belongs_to :user, optional: true
 
   # Validation_definition
-  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
+  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/
   VALID_KANA_REGEX = /\A[ぁ-んー－]+\z/
   VALID_POSTCODE_REGEX = /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}\z/
 

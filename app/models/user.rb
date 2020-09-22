@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   # Validation_definition
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
+  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/
   VALID_KANA_REGEX = /\A[ぁ-んー－]+\z/
 
   # Registrations_validation
