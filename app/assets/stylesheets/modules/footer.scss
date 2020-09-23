@@ -22,15 +22,15 @@
       display: flex;
       justify-content: center;
       margin: 20px auto 0;
-      a:first-child {
-        margin-right: 10px;
-        .aBtn {
-          width: 180px;
-        }
-      }
       a {
         box-sizing: border-box;
         .gBtn {
+          width: 180px;
+        }
+      }
+      a:first-child {
+        margin-right: 10px;
+        .aBtn {
           width: 180px;
         }
       }
