@@ -51,19 +51,22 @@
 |name|string|null: false|
 |detail|text|null: false|
 |price|integer|null: false|
-|size|string|null: false|
-|states|string|null: false|
-|delivery_fee|string|null: false|
+|condition_id|integer|null: false|
+|delivery_fee_id|integer|null: false|
 |prefecture_id|integer|null: false|
-|delivery_day|string|null: false|
+|delivery_day_id|integer|null: false|
 |brand|references|foreign_key: true|
 |category|references|null: false, foreign_key: true|
-|user|references|null: false, foreign_key: true|
+|seller|references|null: false, foreign_key: true|
+|buyer|references|null: false, foreign_key: true|
 ### Association
 - has_many :images
 - belongs_to :user
 - belongs_to :category
 - belongs_to :brand
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :delivery_fee
+- belongs_to_active_hash :delivery_day
 - belongs_to_active_hash :prefecture
 
 ## Imagesテーブル
