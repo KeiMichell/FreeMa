@@ -1,6 +1,8 @@
 = render partial: 'header'
 
 .body
-  chom2
+  = link_to '出品', new_item_path
+  .contents
+    = render @items
 
 = render partial: 'footer'
