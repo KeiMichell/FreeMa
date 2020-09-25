@@ -1,5 +1,104 @@
 .header {
   height: 110px;
   width: 100%;
-  background-color: red;
+  background-color: white;
+    &-box {
+    background-color: white;
+    height: 100px;
+    max-width: 1040px;
+    width: 100%;
+    min-height: 82px;
+    margin: 0 auto;
+    padding: 15px 0 0; 
+  }
+    &-main {
+      display: flex;
+      align-items: center;
+      width: 1040px;
+      height: 55px;
+    }
+    &-icon {
+      float: left;
+    }
+    &-searchbox {
+      width: 100%;
+      margin-left: auto;
+    }
+}
+
+
+.form{
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.form--search {
+  width: calc(100% - 26px);
+  margin-bottom: 5px;
+}
+
+.logo-image {
+  height: 40px;
+  width: 140px;
+  padding-bottom: 10px;
+  margin-right: 30px;
+}
+
+
+.submit--btn {
+  width: 36px;
+  border: 0;
+  cursor: pointer;
+  background-color: #3CCACE;
+  padding: 8px;
+  color: white;
+}
+
+.nav {
+  font-size: 14px;
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.listsLeft {
+  display: flex;
+  position: relative;
+  &__item--first {
+    text-decoration: none;
+    padding: 0;
+    line-height: 38px;
+  }
+  &__item--second {
+    line-height: 38px;
+    padding: 0 0 0 16px;
+  }
+}
+
+.listsRight {
+  display: flex;
+  position: relative;
+  margin-left: auto;
+  &__item--login {
+    display: flex;
+    align-items: center;
+    color: #333333;
+    text-decoration: none;
+    line-height: 32px;
+    padding: 0 0 0 16px;
+  }
+  &__item--new {
+    display: flex;
+    align-items: center;
+    color: #333333;
+    text-decoration: none;
+    line-height: 32px;
+    padding: 0 0 0 16px;
+  }
+}
+
+
+.tree-displaynone {
+  display: none;
 }
