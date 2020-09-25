@@ -1,0 +1,53 @@
+<%= form_for @item do |f| %>
+
+  <div class="item-field">
+    <%= f.label :"商品画像" %><br>
+    <%= f.fields_for :images do |i| %>
+      <%= i.file_field :image %>
+    <% end %>
+  </div>
+  <div class="item-field">
+    <%= f.label :"商品名" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="item-field">
+    <%= f.label :"商品の説明" %><br>
+    <%= f.text_area :detail %>
+  </div>
+
+  <p>商品の詳細</p>
+  <div class="item-field">
+    <%= f.label :"カテゴリー" %><br>
+    <%= f.collection_select :category_id, Prefecture.all, :id, :name %>
+  </div>
+  <div class="item-field">
+    <%= f.label :"ブランド" %><br>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
+  </div>
+  <div class="item-field">
+    <%= f.label :"商品の状態" %><br>
+    <%= f.collection_select :condition_id, Condition.all, :id, :name %>
+  </div>
+
+  <p>発送について</p>
+  <div class="item-field">
+    <%= f.label :"配送料の負担" %><br>
+    <%= f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name %>
+  </div>
+  <div class="item-field">
+    <%= f.label :"発送元の地域" %><br>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
+  </div>
+  <div class="item-field">
+    <%= f.label :"発送までの日数" %><br>
+    <%= f.collection_select :delivery_day_id, DeliveryDay.all, :id, :name %>
+  </div>
+  <p>販売価格</p>
+  <div class="item-field">
+    <%= f.label :"価格" %><br>
+    <%= f.number_field :price %><br>
+  </div>
+  <p>販売手数料（10%）</p>
+  <p>販売利益</p>
+  <%= f.submit "出品する" %>
+<% end %>
