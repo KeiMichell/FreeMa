@@ -18,11 +18,11 @@
   <p>商品の詳細</p>
   <div class="item-field">
     <%= f.label :"カテゴリー" %><br>
-    <%= f.collection_select :category_id, Prefecture.all, :id, :name %>
+    <%= f.collection_select :category_id, @category_parent, :id, :name, {prompt: "--"} %>
   </div>
   <div class="item-field">
     <%= f.label :"ブランド" %><br>
-    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
+    <%= f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "--"} %>
   </div>
   <div class="item-field">
     <%= f.label :"商品の状態" %><br>
