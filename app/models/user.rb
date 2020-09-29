@@ -26,5 +26,7 @@ class User < ApplicationRecord
 
   # Association
   has_one :address
+  has_many :selling_items, class_name: 'Item', foreign_key: 'seller_id'
+  has_many :sold_items, class_name: 'Item', foreign_key: 'buyer_id'
 
 end
