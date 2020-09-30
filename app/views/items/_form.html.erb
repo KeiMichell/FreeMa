@@ -22,7 +22,9 @@
   </div>
   <div class="item-field">
     <%= f.label :"ブランド" %><br>
-    <%= f.collection_select :brand_id, Brand.all, :id, :name, {prompt: "--"} %>
+    <%= f.fields_for :brand_attributes do |i| %>
+      <%= i.text_field :name %>
+    <% end %>
   </div>
   <div class="item-field">
     <%= f.label :"商品の状態" %><br>
