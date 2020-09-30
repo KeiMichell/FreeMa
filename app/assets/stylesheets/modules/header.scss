@@ -39,7 +39,7 @@
                   width: calc(100% - 26px);
                   margin-bottom: 5px;
                 }
-                &.submit__btn {
+                &--submit__btn {
                   width: 36px;
                   border: 0;
                   cursor: pointer;
@@ -48,9 +48,6 @@
                   color: white;
                 }
 }
-
-
-
 
 .nav {
   font-size: 14px;
