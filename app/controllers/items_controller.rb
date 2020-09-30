@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @category_parent = Category.where(ancestry: nil)
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
@@ -33,6 +34,5 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :brand_id, :price, :condition_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, images_attributes: [:image]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :detail, :category_id, :price, :condition_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, images_attributes: [:image], brand_attributes: [:name]).merge(seller_id: current_user.id)  end
   end
-end
