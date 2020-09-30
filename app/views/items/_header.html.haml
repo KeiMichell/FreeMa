@@ -6,8 +6,8 @@
       .header-searchbox
         .form
           = text_field_tag :content, '', class: 'form--search', placeholder: 'キーワードから探す'
-          %button{type: 'submit', class: 'submit--btn'}
-            %i.fas.fa-search
+          = button_tag 'Botton', type: 'button', class: 'submit--btn' do
+            =icon('fas', 'search')
     .nav
       %ul.listsLeft
         %li.listsLeft__item--first
