@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_104913) do
+ActiveRecord::Schema.define(version: 2020_09_30_025551) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.string "postcode", null: false
+    t.string "last_name", limit: 255, null: false
+    t.string "first_name", limit: 255, null: false
+    t.string "last_name_kana", limit: 255, null: false
+    t.string "first_name_kana", limit: 255, null: false
+    t.string "postcode", limit: 255, null: false
     t.integer "prefecture_id", null: false
-    t.string "city", null: false
-    t.string "block", null: false
-    t.string "building"
-    t.string "phone_number"
+    t.string "city", limit: 255, null: false
+    t.string "block", limit: 255, null: false
+    t.string "building", limit: 255
+    t.string "phone_number", limit: 255
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -32,20 +32,20 @@ ActiveRecord::Schema.define(version: 2020_09_24_104913) do
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
-    t.string "ancestry"
+    t.string "name", limit: 255, null: false
+    t.string "ancestry", limit: 255
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image", null: false
+    t.string "image", limit: 255, null: false
     t.bigint "item_id", null: false
     t.index ["item_id"], name: "index_images_on_item_id"
   end
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_104913) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
     t.text "detail", null: false
     t.integer "price", null: false
     t.integer "condition_id", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_104913) do
     t.bigint "brand_id"
     t.bigint "category_id", null: false
     t.bigint "seller_id", null: false
-    t.bigint "buyer_id", null: false
+    t.bigint "buyer_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
@@ -71,17 +71,17 @@ ActiveRecord::Schema.define(version: 2020_09_24_104913) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "nickname", null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
+    t.string "nickname", limit: 255, null: false
+    t.string "last_name", limit: 255, null: false
+    t.string "first_name", limit: 255, null: false
+    t.string "last_name_kana", limit: 255, null: false
+    t.string "first_name_kana", limit: 255, null: false
     t.date "birthday", null: false
-    t.string "image"
+    t.string "image", limit: 255
     t.text "profile"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string "email", limit: 255, default: "", null: false
+    t.string "encrypted_password", limit: 255, default: "", null: false
+    t.string "reset_password_token", limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
