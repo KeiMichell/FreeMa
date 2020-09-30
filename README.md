@@ -58,7 +58,7 @@
 |brand|references|foreign_key: true|
 |category|references|null: false, foreign_key: true|
 |seller|references|null: false, foreign_key: true|
-|buyer|references|null: false, foreign_key: true|
+|buyer|references|null: true, foreign_key: true|
 ### Association
 - has_many :images
 - belongs_to :user
