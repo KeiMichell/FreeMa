@@ -29,7 +29,7 @@ $(document).on('turbolinks:load', ()=> {
     const blobUrl = window.URL.createObjectURL(file);
 
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
-    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+    if (img =＝＝＝＝ $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
       $('#previews').append(buildImg(targetIndex, blobUrl));
