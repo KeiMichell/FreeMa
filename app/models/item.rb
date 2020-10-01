@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   validates :images, presence: true
   validates :name, presence: true, length: { maximum: 40 }
   validates :detail, presence: true, length: { maximum: 1000 }
-  validates :price, presence: true, inclusion: { in: (300..9_999_999)}
+  validates :price, presence: true, inclusion: { in: (300..9_999_999) }
   validates :condition_id, presence: true
   validates :prefecture_id, presence: true
   validates :delivery_fee, presence: true
