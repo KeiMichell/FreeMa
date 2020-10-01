@@ -1,4 +1,5 @@
 <%= form_for @item do |f| %>
+<%= render 'layouts/error_messages', model: f.object%>
   <div class="item-field">
     <%= f.label :"商品画像" %><br>
     <div id="image-box">
@@ -49,21 +50,21 @@
   </div>
   <div class="item-field">
     <%= f.label :"商品の状態" %><br>
-    <%= f.collection_select :condition_id, Condition.all, :id, :name %>
+    <%= f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "--"} %>
   </div>
 
   <p>発送について</p>
   <div class="item-field">
     <%= f.label :"配送料の負担" %><br>
-    <%= f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name %>
+    <%= f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, {prompt: "--"} %>
   </div>
   <div class="item-field">
     <%= f.label :"発送元の地域" %><br>
-    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "--"} %>
   </div>
   <div class="item-field">
     <%= f.label :"発送までの日数" %><br>
-    <%= f.collection_select :delivery_day_id, DeliveryDay.all, :id, :name %>
+    <%= f.collection_select :delivery_day_id, DeliveryDay.all, :id, :name, {prompt: "--"} %>
   </div>
   <p>販売価格</p>
   <div class="item-field">
