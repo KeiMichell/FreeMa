@@ -1,22 +1,22 @@
 = render partial: 'header'
 
 .main
-  %section.main-topimage
-    .content
-      %h2.content__subtitle
+  %section.mainTopimage
+    .mainTopimage__content
+      %h2.mainTopimage__content__subtitle
         人生を変えるフリマアプリ
-      %p.content__text
+      %p.mainTopimage__content__text
         FURIMAはだれでもかんたんに出品・購入できる
         %br
         フリマアプリです
-      .content__btn
+      .mainTopimage__content__btn
         = link_to image_tag(src = "http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg", class:"aBtn"), "#"
         = link_to image_tag(src = "http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg", class:"gBtn"), "#"
     .picture
-  %section.main-reasons 
-    %h2.subtitle
+  %section.mainReasons 
+    %h2.mainReasons__subtitle
       "FURIMAが選ばれる3つの理由"
-    %ul.lists
+    %ul.mainReasons__lists
       %li.list
         .list__img
           .number
@@ -48,24 +48,24 @@
         %p.list__comment
           最大3%でお得に出品&購入！
 
-  %section.main-middleImage
-    .main-middleImage__inner
-      %h2.main-middleImage__inner__subtitle
+  %section.mainMiddleImage
+    .mainMiddleImage__inner
+      %h2.mainMiddleImage__inner__subtitle
         会員数日本一位
-      %p.main-middleImage__inner__text
+      %p.mainMiddleImage__inner__text
         FURIMAは、フリマアプリで最も人気。
         %br
         出品・購入回数も業界最多です！
         %br
         ほしかったあの商品に出会えるかもしれません。
-      .main-middleImage__inner__btn
+      .mainMiddleImage__inner__btn
         = link_to image_tag(src = "http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg", class:"aBtn"), "#"
         = link_to image_tag(src = "http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg", class:"gBtn"), "#"
 
-  %section.main-feature
-    %h2.main-feature__head
+  %section.mainFeature
+    %h2.mainFeature__head
       FURIMAの特徴
-    .main-feature__items
+    .mainFeature__items
       %section.item
         %figure.item__img
           = image_tag 'http://furima.tokyo/assets/icon-01-7f6abf70ea7deaed9ab5d8b6d5cb796250e3e292b9ecdc559ebe6492c31fdab8.svg'
@@ -87,15 +87,15 @@
           様々な支払いに対応
         %p.item__comment
           お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
-  %section.main-pickcategory
-    %h2.main-pickcategory__title
+  %section.mainPickcategory
+    %h2.mainPickcategory__title
       ピックアップカテゴリー
     .category
-      = link_to "", class:"categoryHead"  do
+      = link_to "#", class:"categoryHead"  do
         %h3.categoryHead__title
           新規投稿商品
     .category__lists
-      = link_to "", class:"categoryList" do
+      = link_to "#", class:"categoryList" do
         .categoryList__img
           = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG'
         .categoryList__body
@@ -106,7 +106,7 @@
             %li.fa.fa-star 
               1
           %p (税込)
-      = link_to "", class:"categoryList" do
+      = link_to "#", class:"categoryList" do
         .categoryList__img
           = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG'
         .categoryList__body
@@ -117,7 +117,7 @@
             %li.fa.fa-star 
               3
           %p (税込)
-        = link_to "", class:"categoryList" do
+        = link_to "#", class:"categoryList" do
           .categoryList__img
             = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
           .categoryList__body
@@ -128,7 +128,7 @@
               %li.fa.fa-star 
                 1
             %p (税込)
-        = link_to "", class:"categoryList" do
+        = link_to "#", class:"categoryList" do
           .categoryList__img
             = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png'
           .categoryList__body
@@ -139,7 +139,7 @@
               %li.fa.fa-star 
                 1
             %p (税込)
-        = link_to "", class:"categoryList" do
+        = link_to "#", class:"categoryList" do
           .categoryList__img
             = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png'
           .categoryList__body
@@ -150,14 +150,14 @@
               %li.fa.fa-star 
                 1
             %p (税込)
-  %section.main-pickbrand
-    %h2.main-pickbrand__title
+  %section.mainPickbrand
+    %h2.mainPickbrand__title
       ピックアップブランド
       .category
         = link_to "#", class: "categoryHead" do
           アーカイバ
       .category__lists
-        = link_to "", class:"categoryList" do
+        = link_to "#", class:"categoryList" do
           .categoryList__img
             = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG'
           .categoryList__body
@@ -168,7 +168,7 @@
               %li.fa.fa-star 
                 1
             %p (税込)
-        = link_to "", class:"categoryList" do
+        = link_to "#", class:"categoryList" do
           .categoryList__img
             = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG'
           .categoryList__body
@@ -179,7 +179,7 @@
               %li.fa.fa-star 
                 3
             %p (税込)
-        = link_to "", class:"categoryList" do
+        = link_to "#", class:"categoryList" do
           .categoryList__img
             = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
           .categoryList__body
@@ -190,7 +190,7 @@
               %li.fa.fa-star 
                 1
             %p (税込)
-        = link_to "", class:"categoryList" do
+        = link_to "#", class:"categoryList" do
           .categoryList__img
             = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png'
           .categoryList__body
@@ -201,7 +201,7 @@
               %li.fa.fa-star 
                 1
             %p (税込)
-        = link_to "", class:"categoryList" do
+        = link_to "#", class:"categoryList" do
           .categoryList__img
             = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png'
           .categoryList__body
