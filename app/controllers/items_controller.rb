@@ -49,6 +49,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
     return if @item.seller_id == current_user.id
+
     redirect_to action: :index
   end
 
