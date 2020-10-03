@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :create]
   before_action :set_item, except: [:index, :new, :create, :show]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @items = Item.includes(:images).order('created_at DESC')
@@ -48,9 +48,8 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-    if @item.seller_id != current_user.id
-      redirect_to action: :index
-    end
+    return if @item.seller_id == current_user.id
+    redirect_to action: :index
   end
 
   def move_to_index
