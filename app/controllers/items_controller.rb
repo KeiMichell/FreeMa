@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_product, except: [:index, :new, :create]
+  before_action :move_to_index, except: [:index, :create]
+  before_action :set_item, except: [:index, :new, :create]
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @items = Item.includes(:images).order('created_at DESC')
@@ -15,7 +17,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @category_parent = Category.where(ancestry: nil)
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
@@ -28,7 +29,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @product.update(product_params)
+    if @item.update(product_params)
       redirect_to root_path
     else
       render :edit
@@ -45,6 +46,10 @@ class ItemsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find(params[:id])
+    @item = Item.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
   end
 end
