@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :create]
-  before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, except: [:index, :new, :create, :show]
   before_action :authenticate_user!, except: [:index]
 
   def index
@@ -45,8 +45,11 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :detail, :category_id, :price, :condition_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, images_attributes: [:image, :_destroy, :id], brand_attributes: [:name, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
-  def set_product
+  def set_item
     @item = Item.find(params[:id])
+    if @item.user_id != current_user.id
+      redirect_to action: :index
+    end
   end
 
   def move_to_index
