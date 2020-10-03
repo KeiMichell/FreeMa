@@ -1,0 +1,249 @@
+// 共通設定
+
+a {
+  color: #3CCACE;
+  text-decoration: none;
+}
+
+div {
+  display: block;
+}
+
+ul {
+  display: block;
+}
+
+h2 {
+  display: block;
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// 商品詳細ページ構成
+
+.Main {
+  background-color:#f8f8f8;
+  padding: 24px 40px 40px;
+  &__show {
+    background-color: #fafafa;
+    padding: 40px;
+    margin: 0 auto;
+  }
+  &__top {
+    width: 700px;
+    margin: 0 auto;
+  }
+} 
+
+// 商品画像、料金詳細
+
+.itemBox {
+  background-color: #fff;
+  padding: 24px 40px 40px;
+  &__name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  &__body {
+  
+    &--top {
+      width: 100%;
+      height: 346px;
+      object-fit: cover;
+    }
+    &--bottom{
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      position: relative;
+    }
+    &--left{
+      width: 140px;
+      height: 87px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    &--right{
+      width: 140px;
+      height: 87px;
+      object-fit: cover;
+    }
+  }
+  &__price {
+    margin: 24px 0 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    &--number {
+      font-size: 46px;
+      font-weight: bold;
+      margin: 0 10px 0 0;
+    }
+    &--detail {
+      font-size: 16px;
+    }
+  }
+}
+
+// 商品説明
+
+.itemDetail {
+  line-height: 1.5;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+
+// 商品詳細テーブル
+
+.table {
+  width: 100%;
+  height: 375px;
+  border: 1px solid #f8f8f8;
+  &__body {
+    display: border-box;
+    vertical-align: middle;
+    &--row {
+      border: solid 1px #aaaaaa;
+      border: 1px solid #dedede;
+      font-size: 14px;
+    }
+    &--item {
+      width: 20%;
+      background-color: #eee;
+      font-weight: 400;
+      padding: 8px;
+      text-align: center;
+    }
+    &--value {
+      width: 61%;
+      padding: 15px 15px;
+    }
+  }
+}
+
+// オプションボタン
+
+.optional{
+  
+  &__btn {
+    margin: 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    &--like {
+      color: #3CCACE;
+      margin-right: auto;
+      padding: 6px 10px;
+      border-radius: 40px;
+      border: 1px solid #ffb340;
+    }
+    &--like:hover {
+      opacity: 0.5;
+      filter: brightness(100%);
+    }
+
+    &--flag {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #333;
+      text-decoration: none;
+    }
+    &--report {
+      color: #333;
+    }
+    &--flag:hover {
+      opacity: 0.5;
+      filter: brightness(100%);
+    }
+
+  }
+}
+
+// コメント入力欄
+
+
+.commentBox {
+  background-color: #fff;
+  padding: 24px;
+  margin: 10px 0;
+  text-align: center;
+  &__new {
+    width: 96%;
+    min-height: 104px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  &__notice {
+    font-size: 14px;
+    background-color: #f8f8f8;
+    margin: 10px 0;
+    text-align: left;
+  }
+  &__btn {
+    line-height: 48px;
+    background: #3CCACE;
+    border: 1px solid #3CCACE;
+    color: #fff;
+    width: 60%;
+    font-size: 18px;
+    border-radius: 100px;
+  }
+}
+
+// 次へ、前へリンク
+
+.links {
+  display: flex;
+  justify-content: space-between;
+}
+
+// 関連商品紹介
+
+.relatedItems {
+  width: 700px;
+  height: 328px;
+  &__link {
+    display: block;
+    margin: 24px 0 8px;
+    color: #3CCACE;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 22px;
+    position: relative;
+  }
+  &__product {
+    margin: 24px 0 8px;
+    float: left;
+    width: calc(100% / 3);
+    &--image {
+      width: 233.33px;
+      height: 150px;
+      object-fit: cover;
+    }
+    &--body {
+      padding: 16px;
+      background-color: white;
+      color: #333;
+    }
+    &--name {
+      line-height: 1.5;
+      font-size: 16px;
+      text-align: left;
+    }
+    &--details {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+    }
+    &--tax {
+      font-size: 10px;
+    }
+    
+  }
+  &__product:hover {
+    opacity: 0.5;
+    filter: brightness(100%);
+  }
+}
+

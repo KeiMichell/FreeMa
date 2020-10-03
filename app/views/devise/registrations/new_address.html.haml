@@ -1,0 +1,40 @@
+%h2 住所情報登録
+= form_for @address do |f|
+  = render "devise/shared/error_messages", resource: @address
+  .field
+    = f.label :"お名前（全角）"
+    %br
+    = f.text_field :last_name, placeholder:"姓"
+    = f.text_field :first_name, placeholder:"名"
+  .field
+    = f.label :"お名前ふりがな（全角）"
+    %br
+    = f.text_field :last_name_kana, placeholder:"せい"
+    = f.text_field :first_name_kana, placeholder:"めい"
+  .field
+    = f.label :"郵便番号"
+    %br
+    = f.text_field :postcode, placeholder:"xxx-xxxx"
+  .field
+    = f.label :"都道府県"
+    %br
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+  .field
+    = f.label :"市区町村"
+    %br
+    = f.text_field :city, placeholder:"○○市、〇〇区"
+  .field
+    = f.label :"番地"
+    %br
+    = f.text_field :block, placeholder:"△△丁目××番地"
+  .field
+    = f.label :"建物名"
+    %br
+    = f.text_field :building, placeholder:"□□マンション123"
+  .field
+    = f.label :"電話番号"
+    %br
+    = f.text_field :phone_number, placeholder:"xxx-xxxx-xxxx"
+  .actions
+    = f.submit "登録"
+= render "devise/shared/links"

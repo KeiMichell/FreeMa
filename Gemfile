@@ -38,6 +38,10 @@ group :development, :test do
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -72,4 +76,4 @@ gem 'font-awesome-sass'
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'jquery-rails'
 gem 'mini_magick'
-
+gem 'active_hash'

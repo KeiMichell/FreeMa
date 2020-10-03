@@ -1,6 +1,97 @@
+.appBanner {
+  background-image: url(http://furima.tokyo/assets/bg-appBanner-pict-ce684a4c4d5fa2da43c30a3839923591af75a642a3a906ad975065771ef3d72f.jpg);
+  padding: 100px 40px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  .inner {
+    color: #fff;
+    text-align: center;
+    &__title {
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    &__text {
+      font-size: 35px;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    }
+    &__icon {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 20px auto 0;
+      a {
+        box-sizing: border-box;
+        .gBtn {
+          width: 180px;
+        }
+      }
+      a:first-child {
+        margin-right: 10px;
+        .aBtn {
+          width: 180px;
+        }
+      }
+    }
+  }
+}
+
 .footer {
-  height:110px;
-  width:100%;
-  background-color: blue;
-  bottom: 0;
+  padding:60px 0;
+  color: #fff;
+  background-color: #272727;
+  text-align: center;
+  .contents {
+    max-width: 840px;
+    margin: 0 auto;
+    display: flex;
+    .content {
+      display: flex;
+      flex-direction: column;
+      width: calc(1 / 3 * 100%);
+      margin: 0 2% 0 0;
+      &__head {
+        margin: 0 0 20px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      ul {
+        list-style: none;
+        li {
+          margin: 0;
+          padding: 0;
+          a {
+            color: #fff;
+            text-decoration: none;
+            font-size : 12px;
+            line-height: 32px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.purchaseBtn {
+  box-sizing: border-box;
+  width: 120px;
+  background-color: #3CCACE;
+  text-align: center;
+  border-radius: 4%;
+  bottom: 32px;
+  right: 32px;
+  position:fixed;
+  padding:15px;
+  &__text {
+    color: #fff;
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    margin-bottom: 5px;
+  }
+  &__icon {
+    width: 60%;
+  }
 }
