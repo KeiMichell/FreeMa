@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @category_parent = Category.where(ancestry: nil)
   end
 
   def update
@@ -47,7 +48,7 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-    if @item.user_id != current_user.id
+    if @item.seller_id != current_user.id
       redirect_to action: :index
     end
   end
