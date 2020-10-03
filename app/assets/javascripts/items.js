@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', ()=> {
-  // 画像用のinputを生成する関数
   const buildFileField = (index)=> {
     const html = `<div data-index="${index}" class="js-file_group">
                     <input class="js-file" type="file"
@@ -9,12 +8,10 @@ $(document).on('turbolinks:load', ()=> {
                   </div>`;
     return html;
   }
-  // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
     const html = `<img data-index="${index}" src="${url}" width="100px" height="100px">`;
     return html;
   }
-  // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
@@ -29,7 +26,7 @@ $(document).on('turbolinks:load', ()=> {
     const blobUrl = window.URL.createObjectURL(file);
 
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
-    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+    if ((img = $(`img[data-index="${targetIndex}"]`)[0])) {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
       $('#previews').append(buildImg(targetIndex, blobUrl));
