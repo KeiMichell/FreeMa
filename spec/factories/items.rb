@@ -10,6 +10,7 @@ FactoryBot.define do
     prefecture_id     {1}
     delivery_day_id   {1}
     association :seller, factory: :user
+
     after(:build) do |item|
       item.images << build(:image)
       parent = create(:category, name: "親", parent_id: nil)
