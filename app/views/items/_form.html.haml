@@ -62,4 +62,7 @@
     %br
   %p 販売手数料（10%）
   %p 販売利益
-  = f.submit "出品する"
+  - if @item.persisted?
+    = f.submit "変更する"
+  -else
+    = f.submit "出品する"
