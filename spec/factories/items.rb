@@ -1,8 +1,7 @@
 FactoryBot.define do
-
   factory :item do
-    name              {"tomato"}
-    detail            {"aaa"}
+    name              { "tomato" }
+    detail            { "aaa" }
     price             {300}
     category_id       {1}
     condition_id      {1}
@@ -19,5 +18,4 @@ FactoryBot.define do
       item.category_id = grand_child.id
     end
   end
-
 end

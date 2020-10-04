@@ -19,9 +19,7 @@ describe Item do
       expect(@item.errors[:images]).to include("を入力してください")
     end
 
-  
     it "nameが空ならNG" do
-      # item = build(:item, name: nil)
       @item.name = nil
       @item.valid?
       expect(@item.errors[:name]).to include("を入力してください")
@@ -63,7 +61,7 @@ describe Item do
         あれば、あまり名の知られていないブランドのスーツケースを買うことをおすすめします。但し長い目で見ると、 頻繁に使うのであればよいもの1つ買って長く使ったほうが、コスパがよいかも知れません。
         以上のポイントから、何を妥協すべきか、妥協できるのかを考えて購入すると、
         自分にあったお得な格安スーツケースが購入できるでしょう。"
-        @item.valid?
+      @item.valid?
       expect(@item.errors[:detail]).to include("は1000文字以内で入力してください")
     end
 
@@ -108,7 +106,7 @@ describe Item do
       expect(@item.errors[:price]).to include("は一覧にありません")
     end
     it "priceが300円未満ならNG" do
-      @item.price  = "290"
+      @item.price = "290"
       @item.valid?
       expect(@item.errors[:price]).to include("は一覧にありません")
     end
@@ -118,4 +116,4 @@ describe Item do
       expect(@item.errors[:price]).to include("は一覧にありません")
     end
   end
-end 
+end
