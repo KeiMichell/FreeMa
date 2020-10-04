@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :create]
+  before_action :move_to_index, except: [:index, :show]
   before_action :set_item, except: [:index, :new, :create, :show]
   before_action :authenticate_user!, except: [:index, :show]
 
