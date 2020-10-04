@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -17,6 +18,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @category_parent = Category.where(ancestry: nil)
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
@@ -30,7 +32,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(product_params)
+    @category_parent = Category.where(ancestry: nil)
+    if item_params[:images_attributes].nil?
+      render :edit
+    end
+    if @item.update(item_params)
       redirect_to root_path
     else
       render :edit
@@ -38,6 +44,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.destroy
+    redirect_to root_path
   end
 
   private
