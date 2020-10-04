@@ -26,5 +26,7 @@ class User < ApplicationRecord
 
   # Association
   has_one :address
+  has_many :selling_items, -> { where("seller_id is not NULL && buyer_id is NULL") }, class_name: 'Item'
+  has_many :sold_items, -> { where("seller_id is not NULL && buyer_id is not NULL") }, class_name: 'Item'
 
 end
