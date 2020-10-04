@@ -4,40 +4,41 @@ describe Item do
   describe '#create' do
     before do
       @user = create(:user)
+      @item = build(:item, seller_id: @user.id)
     end
 
     it "必須項目が入力されていればOK" do
-      item = build(:item)
-      item.valid?
-      expect(item).to be_valid
+      # @item = build(:item)
+      @item.valid?
+      expect(@item).to be_valid
     end
 
     it "imagesが空ならNG" do
-      item = build(:item, images: nil)
-      item.valid?
-      expect(item.errors[:image]).to include("を入力してください")
+      @item.images.clear
+      @item.valid?
+      expect(@item.errors[:images]).to include("を入力してください")
     end
 
     it "nameが空ならNG" do
-      item = build(:item, name: nil)
-      item.valid?
-      expect(item.errors[:name]).to include("を入力してください")
+      @item.name = nil
+      @item.valid?
+      expect(@item.errors[:name]).to include("を入力してください")
     end
 
     it "nameが41文字以上ならNG" do
-      item = build(:item, name: "あああああああああああああああああああああああああああああああああああああああああ")
-      item.valid?
-      expect(item.errors[:name]).to include("は40文字以内で入力してください")
+      @item.name = "あああああああああああああああああああああああああああああああああああああああああ"
+      @item.valid?
+      expect(@item.errors[:name]).to include("は40文字以内で入力してください")
     end
 
     it "detailが空ならNG" do
-      item = build(:item, detail: nil)
-      item.valid?
-      expect(item.errors[:detail]).to include("を入力してください")
+      @item.detail = nil
+      @item.valid?
+      expect(@item.errors[:detail]).to include("を入力してください")
     end
 
     it "detailが1001文字以上ならNG" do
-      item = build(:item, detail: "スーツケースを格安で購入する場合、皆さんならまずスーツケースのどの部分を見ますか？
+      @item.detail = "スーツケースを格安で購入する場合、皆さんならまずスーツケースのどの部分を見ますか？
         スーツケースを選ぶ際に抑えておきたいポイントは「デザイン」「重さ」「大きさ」「ブランド」の4つです。
         格安で購入するためにはその4つのポイントのどの点を妥協するか、ということになります。まずは、4つの
         ポイントをそれぞれ説明しましょう。
@@ -59,60 +60,60 @@ describe Item do
         ざらにあります。良いブランドであれば当然機能性やデザイン性には優れていますが、格安で購入するので
         あれば、あまり名の知られていないブランドのスーツケースを買うことをおすすめします。但し長い目で見ると、 頻繁に使うのであればよいもの1つ買って長く使ったほうが、コスパがよいかも知れません。
         以上のポイントから、何を妥協すべきか、妥協できるのかを考えて購入すると、
-        自分にあったお得な格安スーツケースが購入できるでしょう。")
-      item.valid?
-      expect(item.errors[:detail]).to include("は1000文字以内で入力してください")
+        自分にあったお得な格安スーツケースが購入できるでしょう。"
+      @item.valid?
+      expect(@item.errors[:detail]).to include("は1000文字以内で入力してください")
     end
 
-    it "categoryが空ならNG" do
-      item = build(:item, category_id: nil)
-      item.valid?
-      expect(item.errors[:category_id]).to include("を入力してください")
+    it "category_idが空ならNG" do
+      @item.category_id = nil
+      @item.valid?
+      expect(@item.errors[:category_id]).to include("を入力してください")
     end
 
     it "condition_idが空ならNG" do
-      item = build(:item, condition_id: nil)
-      item.valid?
-      expect(item.errors[:condition_id]).to include("を入力してください")
+      @item.condition_id = nil
+      @item.valid?
+      expect(@item.errors[:condition_id]).to include("を入力してください")
     end
 
     it "delivery_feeが空ならNG" do
-      item = build(:item, delivery_fee_id: nil)
-      item.valid?
-      expect(item.errors[:delivery_fee_id]).to include("を入力してください")
+      @item.delivery_fee_id = nil
+      @item.valid?
+      expect(@item.errors[:delivery_fee_id]).to include("を入力してください")
     end
 
     it "prefecture_idが空ならNG" do
-      item = build(:item, prefecture_id: nil)
-      item.valid?
-      expect(item.errors[:prefecture_id]).to include("を入力してください")
+      @item.prefecture_id = nil
+      @item.valid?
+      expect(@item.errors[:prefecture_id]).to include("を入力してください")
     end
 
     it "delivery_day_idが空ならNG" do
-      item = build(:item, delivery_day_id: nil)
-      item.valid?
-      expect(item.errors[:delivery_day_id]).to include("を入力してください")
+      @item.delivery_day_id = nil
+      @item.valid?
+      expect(@item.errors[:delivery_day_id]).to include("を入力してください")
     end
 
     it "priceが空ならNG" do
-      item = build(:item, price: nil)
-      item.valid?
-      expect(item.errors[:price]).to include("を入力してください")
+      @item.price = nil
+      @item.valid?
+      expect(@item.errors[:price]).to include("を入力してください")
     end
     it "priceがinteger以外ならNG" do
-      item = build(:item, price: "３００")
-      item.valid?
-      expect(item.errors[:price]).to include("は一覧にありません")
+      @item.price = "３００"
+      @item.valid?
+      expect(@item.errors[:price]).to include("は一覧にありません")
     end
     it "priceが300円未満ならNG" do
-      item = build(:item, price: "290")
-      item.valid?
-      expect(item.errors[:price]).to include("は一覧にありません")
+      @item.price = "290"
+      @item.valid?
+      expect(@item.errors[:price]).to include("は一覧にありません")
     end
     it "priceが9999999円よりも高額ならNG" do
-      item = build(:item, price: "19999999")
-      item.valid?
-      expect(item.errors[:price]).to include("は一覧にありません")
+      @item.price = "19999999"
+      @item.valid?
+      expect(@item.errors[:price]).to include("は一覧にありません")
     end
   end
 end
