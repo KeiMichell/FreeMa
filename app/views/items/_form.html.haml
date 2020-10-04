@@ -1,68 +1,102 @@
-= form_for @item do |f|
-  = render 'layouts/error_messages', model: f.object
-  .item-field
-    = f.label :"商品画像"
-    %br
-    #image-box
-      #previews
-        - if @item.persisted?
-          - @item.images.each_with_index do |image, i|
-            = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
-      = f.fields_for :images do |image|
-        .js-file_group{"data-index" => "#{image.index}"}
-          = image.file_field :image, class: 'js-file'
+.item-container
+  .item-header
+    = image_tag 'http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg'
+  .item-form
+    = form_for @item do |f|
+      = render 'layouts/error_messages', model: f.object
+      .item-form__field1
+        = f.label :"出品画像"
+        %span 必須
+        %p 最大10枚までアップロードできます
+        .item-form__field1__imagebox
+          #image-box
+            #previews
+              - if @item.persisted?
+                - @item.images.each_with_index do |image, i|
+                  = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+            = f.fields_for :images do |image|
+              .js-file_group{"data-index" => "#{image.index}"}
+                = image.file_field :image, class: 'js-file'
+                %br
+                %p.js-remove 削除
+              - if @item.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+            - if @item.persisted?
+              .js-file_group{"data-index" => "#{@item.images.count}"}
+                = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
+                .js-remove 削除
+      .item-form__field2
+        .item-form__field2__namebox
+          = f.label :"商品名" 
+          %span 必須
           %br
-          %span.js-remove 削除
-        - if @item.persisted?
-          = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-      - if @item.persisted?
-        .js-file_group{"data-index" => "#{@item.images.count}"}
-          = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-          .js-remove 削除
-  .item-field
-    = f.label :"商品名"
-    %br
-    = f.text_field :name
-  .item-field
-    = f.label :"商品の説明"
-    %br
-    = f.text_area :detail
-  %p 商品の詳細
-  .item-field
-    = f.label :"カテゴリー"
-    %br
-    = f.collection_select :category_id, @category_parent, :id, :name, {prompt: "--"}
-  .item-field
-    = f.label :"ブランド"
-    %br
-    = f.fields_for :brand_attributes do |i|
-      = i.text_field :name
-  .item-field
-    = f.label :"商品の状態"
-    %br
-    = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "--"}
-  %p 発送について
-  .item-field
-    = f.label :"配送料の負担"
-    %br
-    = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, {prompt: "--"}
-  .item-field
-    = f.label :"発送元の地域"
-    %br
-    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "--"}
-  .item-field
-    = f.label :"発送までの日数"
-    %br
-    = f.collection_select :delivery_day_id, DeliveryDay.all, :id, :name, {prompt: "--"}
-  %p 販売価格
-  .item-field
-    = f.label :"価格"
-    %br
-    = f.number_field :price
-    %br
-  %p 販売手数料（10%）
-  %p 販売利益
-  - if @item.persisted?
-    = f.submit "変更する"
-  -else
-    = f.submit "出品する"
+          = f.text_field :name
+        .item-form__field2__detailbox
+          = f.label :"商品の説明"
+          %span 必須
+          %br
+          = f.text_area :detail, placeholder:"商品の説明（必須 1,000文字以内） (色、素材、重さ、注意点など) 例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+      .item-form__field3
+        %p 商品の詳細
+        .item-form__field3__categorybox
+          = f.label :"カテゴリー"
+          %span 必須
+          %br
+          = f.collection_select :category_id, @category_parent, :id, :name, {prompt: "選択してください"}
+        .item-form__field3__brandbox
+          = f.label :"ブランド"
+          %br
+          = f.fields_for :brand_attributes do |i|
+            = i.text_field :name, placeholder:"例）シャネル"
+        .item-form__field3__conditionbox
+          = f.label :"商品の状態"
+          %span 必須
+          %br
+          = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}
+      .item-form__field3
+        %p 発送について
+        %br
+        = f.label :"配送料の負担"
+        %span 必須
+        %br
+        = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, {prompt: "選択してください"}
+        %br
+        = f.label :"発送元の地域"
+        %span 必須
+        %br
+        = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}
+        %br
+        = f.label :"発送までの日数"
+        %span 必須
+        %br
+        = f.collection_select :delivery_day_id, DeliveryDay.all, :id, :name, {prompt: "選択してください"}
+      .item-form__field4
+        .item-form__field4__box1
+          %p 価格（¥300〜9,999,999）
+          .item-form__field3__pricebox
+            = f.label :"販売価格"
+            %span 必須
+            %br
+            = f.number_field :price, placeholder:"0"
+          .item-form__field3__chargebox
+            %p 販売手数料（10%）
+        .item-form__field4__box2
+          %p 販売利益
+          - if @item.persisted?
+            = f.submit "変更する", class:'btn'
+          -else
+            = f.submit "出品する", class:'btn'
+          = link_to "もどる","/" 
+          %p.agreement 禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして加盟店規約に同意したことになります。
+          
+  .item-footer
+    %ul.item-footer__list
+      %li 
+        = link_to "プライバシーポリシー","#"
+      %li 
+        = link_to "FURIMA利用規約","#"
+      %li 
+        = link_to "特定商取引に関する表記","#"
+    = image_tag 'http://furima.tokyo/assets/logo-white-f61961ed5170064c5f33dd4524bdceeb5a5df2c83eb76fba31143f63fbab2c5e.svg'
+    %p ©️ FURIMA
+    
