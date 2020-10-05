@@ -13,12 +13,21 @@
     width: 700px;
     background-color: #fff;
     margin: 0 auto;
-    span {
+    span.musticon {
       background-color: red;
       padding: 2px;
       border-radius: 2px;
       color: #fff;
       font-size: 12px;
+      margin-left: 7px;
+    }
+    span.bettericon {
+      background-color: #BFBFBF;
+      padding: 2px;
+      border-radius: 2px;
+      color: #fff;
+      font-size: 12px;
+      margin-left: 7px;
     }
     label {
       font-weight: bold;
@@ -112,6 +121,19 @@
        }
       &__box1 {
         border-bottom: 2px solid rgb(245, 245, 245);
+        &__pricebox {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          &__label {
+            height: 48px;
+          }
+          &__input {
+            input {
+              text-align: right;
+            }
+          }
+        }
         p {
           margin-bottom: 20px;
         }
