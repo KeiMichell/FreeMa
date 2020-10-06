@@ -50,6 +50,7 @@ class ItemsController < ApplicationController
 
   def purchase
     @item = Item.find(params[:id])
+    @user = current_user
   end
 
   private
