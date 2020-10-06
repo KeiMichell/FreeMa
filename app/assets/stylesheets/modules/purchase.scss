@@ -1,0 +1,117 @@
+@mixin baseBox {
+  border-bottom: 1.5px solid rgb(245, 245, 245);
+  margin: 0 162.5px;
+  padding: 35px 10px;
+}
+
+.item-container {
+  background-color: rgb(245, 245, 245);
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  color: rgb(51, 51, 51);
+  font-size: 14px;
+  &__header {
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__body {
+    width: 700px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 16px;
+    h3 {
+      font-weight: bold;
+      margin-bottom: 8px;
+     }
+    section.item-container__body__box1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      @include baseBox;
+      h2 {
+        font-weight: 600;
+        font-size: 25px;
+      }
+    }
+    section.item-container__body__box2 {
+      display: flex;
+      height: 100px;
+      @include baseBox;
+      .item-container__body__image {
+        border-radius: 2px;
+        object-fit: cover;
+        display: inline-block; 
+        margin-right: 20px;
+      }
+      .item-container__body__info {
+        &__price1 {
+          text-align: right;
+        }
+      }
+    }
+    section.item-container__body__box3 {
+      height: 50px;
+      @include baseBox;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      .item-container__body__price {
+        font-size: 18px;
+      }
+      .item-container__body__money {
+        font-size: 24px;
+      }
+    }
+    section.item-container__body__box4, section.item-container__body__box5 {
+      height: 50px;
+      @include baseBox;
+      i {
+        color: #3CCACE;
+      }
+      span {
+        color: #3CCACE;
+      }
+    }
+    section.item-container__body__box6 {
+      padding: 35px 10px;
+      height: 200px;
+      margin: 0 162.5px;
+      p {
+        color: rgb(145, 145, 145);
+        margin-bottom: 50px;
+      }
+      .btn {
+        margin: 0 auto;
+        display: block;
+        cursor: pointer;
+        background-color: #3CCACE;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 2px;
+        width: 350px;
+        height: 50px;
+        font-size: 17px;
+      }
+    }
+  }
+  &__footer {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    &__list {
+      display: flex;
+      li {
+        margin-right: 20px;
+        font-size: 12px;
+        a {
+          color: rgb(51, 51, 51);
+        }
+      }
+    }
+  }
+} 
