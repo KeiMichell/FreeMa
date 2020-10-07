@@ -1,45 +1,73 @@
-%h2 会員情報登録
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :"ニックネーム"
-    %br
-    = f.text_field :nickname
-  .field
-    = f.label :"メールアドレス"
-    %br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :"パスワード"
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br
-    = f.password_field :password, autocomplete: "new-password", placeholder:"半角英数字7文字以上"
-  .field
-    = f.label :"パスワード確認"
-    %br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  %div
-    %p 本人確認
-    %p
-      安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。
-      %br
-      他のお客さまに公開されることはありません。
-  .field
-    = f.label :"お名前（全角）"
-    %br
-    = f.text_field :last_name, placeholder:"姓"
-    = f.text_field :first_name, placeholder:"名"
-  .field
-    = f.label :"お名前ふりがな（全角）"
-    %br
-    = f.text_field :last_name_kana, placeholder:"せい"
-    = f.text_field :first_name_kana, placeholder:"めい"
-  .field
-    = f.label :"生年月日"
-    %br
-    = f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990, 1, 1)
-  .actions
-    = f.submit "次へ進む"
-= render "devise/shared/links"
+.signup-main
+  .signup-main__icon
+    = link_to image_tag(src = "http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), "#"
+  .signup-main__contents
+    %h2.signup-main__head
+      会員情報登録
+    = form_for(resource, as: resource_name, url: registration_path(resource_name,class: "signup-main__form")) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .signup-main__input
+        .signup-main__form-field
+          = f.label :"ニックネーム", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          = f.text_field :nickname, placeholder: "例）フリマ次郎" ,class: "signup-main__field"
+
+        .signup-main__form-field
+          = f.label :"メールアドレス",class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "signup-main__field"
+          
+        .signup-main__form-field
+          = f.label :"パスワード", class: "signup-main__label"
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} characters minimum)
+          %span.signup-main__require
+            必須
+          %br
+          = f.password_field :password, autocomplete: "new-password", placeholder:"半角英数字7文字以上", class: "signup-main__field"
+
+        .signup-main__form-field
+          = f.label :"パスワード確認", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          = f.password_field :password_confirmation, autocomplete: "new-password",placeholder: "7文字以上", class: "signup-main__field"
+        
+        .signup-main__form-field
+          %h3.signup-main__identification
+            本人確認
+          %p
+            安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。
+            他のお客さまに公開されることはありません。
+
+        .signup-main__form-field
+          = f.label :"お名前（全角）", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          .signup-main__personal-name
+            = f.text_field :last_name, placeholder:"姓", class: "signup-main__field signup-main__field--side"
+            = f.text_field :first_name, placeholder:"名", class: "signup-main__field"
+
+        .signup-main__form-field
+          = f.label :"お名前ふりがな（全角）", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          .signup-main__personal-name
+            = f.text_field :last_name_kana, placeholder:"せい", class: "signup-main__field signup-main__field--side"
+            = f.text_field :first_name_kana, placeholder:"めい", class: "signup-main__field"
+
+        .signup-main__form-field
+          = f.label :"生年月日", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          != sprintf(f.date_select(:birthday,with_css_classes:'signup-main__birthday', use_month_numbers: true,class: 'signup-main__birthday',start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990,1, 1),date_separator:'%s'),'年','月')+'日'
+        = f.submit "次へ進む",class: "signup-main__submit"
+
