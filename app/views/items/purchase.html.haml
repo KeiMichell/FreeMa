@@ -10,7 +10,6 @@
         = image_tag "#{@item.images[0].image}", size: '80x80', class: 'item-container__body__image'
       .item-container__body__info
         .item-container__body__info__name 
-        
           = @item.brand.name + " " + @item.name + " " +  @item.condition.name
         .item-container__body__info__price1 
           -if @item.delivery_fee_id == 1
@@ -35,7 +34,6 @@
           =@user.address.prefecture.name + @user.address.city + @user.address.block + @user.address.building
         %li
           =@user.last_name + " " +  @user.first_name
-        
     %section.item-container__body__box6
       %p 郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
       %button{type: "submit", class:'btn'} 購入する
