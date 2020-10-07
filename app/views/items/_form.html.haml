@@ -28,11 +28,12 @@
     %br
     = f.text_area :detail
   %p 商品の詳細
-  .item-field
-    = f.label :"カテゴリー"
-    %br
-    = f.collection_select :category_id, @category_parent, :id, :name, {prompt: "--"}
-  .item-field
+  .item-field__category
+    .item-field__category__title
+      = f.label :"カテゴリー"
+    .item-field__category__choose
+      = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {id: 'parent_category'}
+  .item-field  
     = f.label :"ブランド"
     %br
     = f.fields_for :brand_attributes do |i|
