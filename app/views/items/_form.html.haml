@@ -8,7 +8,7 @@
       .item-form__field1
         = f.label :"出品画像"
         %span.musticon 必須
-        %p 最大10枚までアップロードできます
+        %p 最大5枚までアップロードできます
         .item-form__field1__imagebox
           #image-box
             #previews
@@ -27,6 +27,9 @@
               .js-file_group{"data-index" => "#{@item.images.count}"}
                 = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
                 .js-remove 削除
+            - if @item.errors.include?(:images)
+              %p.error-message
+                = @item.errors.full_messages_for(:images).first
       .item-form__field2
         .item-form__field2__namebox
           = f.label :"商品名" 
@@ -68,9 +71,9 @@
           - if @item.errors.include?(:condition_id)
             %p.error-message
               = @item.errors.full_messages_for(:condition_id).first
-      .item-form__field3
+      .item-form__field4
         %p 発送について
-        %br
+        .item-form__field4__deliveryfeebox
         = f.label :"配送料の負担"
         %span.musticon 必須
         %br
@@ -78,7 +81,7 @@
         - if @item.errors.include?(:delivery_fee_id)
           %p.error-message
             = @item.errors.full_messages_for(:delivery_fee_id).first
-        %br
+        .item-form__field4__prefecturebox
         = f.label :"発送元の地域"
         %span.musticon 必須
         %br
@@ -86,7 +89,7 @@
         - if @item.errors.include?(:prefecture_id)
           %p.error-message
             = @item.errors.full_messages_for(:prefecture_id).first
-        %br
+        .item-form__field4__deliverydaybox
         = f.label :"発送までの日数"
         %span.musticon 必須
         %br
@@ -94,22 +97,24 @@
         - if @item.errors.include?(:delivery_day_id)
           %p.error-message
             = @item.errors.full_messages_for(:delivery_day_id).first
-      .item-form__field4
-        .item-form__field4__box1
+      .item-form__field5
+        .item-form__field5__box1
           %p 価格（¥300〜9,999,999）
-          .item-form__field4__box1__pricebox
-            .item-form__field4__box1__pricebox__label
+          .item-form__field5__box1__pricebox
+            .item-form__field5__box1__pricebox__label
               = f.label :"販売価格"
               %span.musticon 必須
-            .item-form__field4__box1__pricebox__input
-              %span.priceicon ￥
-              = f.number_field :price, placeholder:"0"
-              - if @item.errors.include?(:price)
-                %p.error-message
-                  = @item.errors.full_messages_for(:price).first
-          .item-form__field4__chargebox
+            .item-form__field5__box1__pricebox__input
+              .item-form__field5__box1__pricebox__input__logo
+                %span.priceicon ￥
+              .item-form__field5__box1__pricebox__input__price
+                = f.number_field :price, placeholder:"0"
+                - if @item.errors.include?(:price)
+                  %p.error-message
+                    = @item.errors.full_messages_for(:price).first
+          .item-form__field5__chargebox
             %p 販売手数料（10%）
-        .item-form__field4__box2
+        .item-form__field5__box2
           %p 販売利益
           - if @item.persisted?
             = f.submit "変更する", class:"btn"
@@ -128,4 +133,4 @@
         = link_to "特定商取引に関する表記","#"
     = image_tag 'http://furima.tokyo/assets/logo-white-f61961ed5170064c5f33dd4524bdceeb5a5df2c83eb76fba31143f63fbab2c5e.svg'
     %p ©️ FURIMA
-    
+  
