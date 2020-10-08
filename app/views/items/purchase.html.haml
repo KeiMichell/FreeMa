@@ -36,7 +36,7 @@
           =@user.last_name + " " +  @user.first_name
     %section.item-container__body__box6
       %p 郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
-      %button{type: "submit", class:'btn'} 購入する
+      = button_tag '購入する', type: 'button', class:'btn'
   .item-container__footer
     %ul.item-container__footer__list
       %li 
