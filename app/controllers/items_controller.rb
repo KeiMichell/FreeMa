@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @category_parent_array = Category.where(ancestry: nil)
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
@@ -28,9 +29,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
   def update
+    @category_parent_array = Category.where(ancestry: nil)
     if item_params[:images_attributes].nil?
       render :edit
     end
