@@ -3,8 +3,8 @@
   font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   color: rgb(51, 51, 51);
   font-size: 14px;
-  .item-header {
-    height: 128px;
+  &__header {
+    height: 125px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,9 +153,8 @@
         }
       }
     }
-
   }
-  .item-footer {
+  &__footer {
     color: #fff;
     display: flex;
     flex-direction: column;
