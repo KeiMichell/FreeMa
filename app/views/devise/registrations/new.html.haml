@@ -70,4 +70,4 @@
           %br
           != sprintf(f.date_select(:birthday,with_css_classes:'signup-main__birthday', use_month_numbers: true,class: 'signup-main__birthday',start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990,1, 1),date_separator:'%s'),'年','月')+'日'
         = f.submit "次へ進む",class: "signup-main__submit"
-
+        = render "devise/shared/links"
