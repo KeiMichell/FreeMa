@@ -50,6 +50,11 @@
         flex-wrap: wrap;
         position: relative;
         margin: 15px 0;
+        .error-message {
+          margin-top: 220px;
+          width: 620px;
+          padding: 40px;
+        }
       }
     }
     &__field2 {
@@ -169,4 +174,4 @@
       }
     }
   }
-}
+} 
