@@ -1,13 +1,71 @@
-%ul
-  -if user_signed_in?
-    %li
-      = link_to "ログアウト", destroy_user_session_path, method: :delete
-    %li
-      =link_to "マイページ", "#"
-  -else
-    %li
-      =link_to "ログイン", new_user_session_path 
-    %li
-      =link_to "新規登録", new_user_registration_path
-               
-  
+
+.header
+  .header-box
+    .header-main
+      .header-icon
+        = image_tag 'logo.png', alt: 'FreeMa-logo', class: 'header--logo__image'
+      .header-searchbox
+        .header-form
+          = text_field_tag :content, '', class: 'header--form__search', placeholder: 'キーワードから探す'
+          = button_tag 'Botton', type: 'button', class: 'header--submit__btn' do
+            =icon('fas', 'search')
+    .nav
+      %ul.listsLeft
+        %li.listsLeft__item--first
+          =link_to "#", class: "catebtn" do
+            カテゴリー
+          .tree-displaynone
+            %ul.categorytree
+              %li.categorytree--item
+                =link_to "#", id: 1 do
+                  レディース
+              %li.categorytree--item
+                =link_to "#", id: 2 do
+                  メンズ
+              %li.categorytree--item
+                =link_to "#", id: 3 do
+                  ベビー・キッズ
+              %li.categorytree--item
+                =link_to "#", id: 4 do
+                  インテリア・住まい・小物
+              %li.categorytree--item
+                =link_to "#", id: 5 do
+                  本・音楽・ゲーム
+              %li.categorytree--item
+                =link_to "#", id: 6 do
+                  おもちゃ・ホビー・グッズ
+              %li.categorytree--item
+                =link_to "#", id: 7 do
+                  コスメ・香水・美容
+              %li.categorytree--item
+                =link_to "#", id: 8 do
+                  家電・スマホ・カメラ
+              %li.categorytree--item
+                =link_to "#", id: 9 do
+                  スポーツ・レジャー
+              %li.categorytree--item
+                =link_to "#", id: 10 do
+                  ハンドメイド
+              %li.categorytree--item
+                =link_to "#", id: 11 do
+                  チケット
+              %li.categorytree--item
+                =link_to "#", id: 12 do
+                  自転車・オートバイ
+              %li.categorytree--item
+                =link_to "#", id: 13 do
+                  その他
+        %li.listsLeft__item--second
+          =link_to "#", class: "brandbtn" do
+            ブランド
+        %ul.listsRight
+          -if user_signed_in?
+            %li.listsRight__item--new
+              =link_to "マイページ", "#"
+            %li.listsRight__item--login
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+          -else
+            %li.listsRight__item--login
+              =link_to "ログイン", new_user_session_path 
+            %li.listsRight__item--new
+              =link_to "新規登録", new_user_registration_path

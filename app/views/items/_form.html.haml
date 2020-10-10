@@ -1,0 +1,68 @@
+= form_for @item do |f|
+  = render 'layouts/error_messages', model: f.object
+  .item-field
+    = f.label :"商品画像"
+    %br
+    #image-box
+      #previews
+        - if @item.persisted?
+          - @item.images.each_with_index do |image, i|
+            = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+      = f.fields_for :images do |image|
+        .js-file_group{"data-index" => "#{image.index}"}
+          = image.file_field :image, class: 'js-file'
+          %br
+          %span.js-remove 削除
+        - if @item.persisted?
+          = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+      - if @item.persisted?
+        .js-file_group{"data-index" => "#{@item.images.count}"}
+          = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
+          .js-remove 削除
+  .item-field
+    = f.label :"商品名"
+    %br
+    = f.text_field :name
+  .item-field
+    = f.label :"商品の説明"
+    %br
+    = f.text_area :detail
+  %p 商品の詳細
+  .item-field
+    = f.label :"カテゴリー"
+    %br
+    = f.collection_select :category_id, @category_parent, :id, :name, {prompt: "--"}
+  .item-field
+    = f.label :"ブランド"
+    %br
+    = f.fields_for :brand_attributes do |i|
+      = i.text_field :name
+  .item-field
+    = f.label :"商品の状態"
+    %br
+    = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "--"}
+  %p 発送について
+  .item-field
+    = f.label :"配送料の負担"
+    %br
+    = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, {prompt: "--"}
+  .item-field
+    = f.label :"発送元の地域"
+    %br
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "--"}
+  .item-field
+    = f.label :"発送までの日数"
+    %br
+    = f.collection_select :delivery_day_id, DeliveryDay.all, :id, :name, {prompt: "--"}
+  %p 販売価格
+  .item-field
+    = f.label :"価格"
+    %br
+    = f.number_field :price
+    %br
+  %p 販売手数料（10%）
+  %p 販売利益
+  - if @item.persisted?
+    = f.submit "変更する"
+  -else
+    = f.submit "出品する"
