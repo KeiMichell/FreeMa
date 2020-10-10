@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+     @item.images.new
       render :new
     end
   end
@@ -39,6 +40,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to root_path
     else
+      @item.images.new
       render :edit
     end
   end
