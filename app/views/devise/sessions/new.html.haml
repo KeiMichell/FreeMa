@@ -1,17 +1,17 @@
-%h2 ログイン
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.login-main
+  .login-main__icon
+    = link_to image_tag(src = "http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), "#"
+  .login-main__contents
+  = form_for(resource, as: resource_name, url: session_path(resource_name,class: "login-main__form")) do |f|
+    .login-main__form-field
+      = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "login-main__field"
+    .login-main__form-field
+      = f.password_field :password, autocomplete: "current-password",placeholder: "パスワード", class: "login-main__field"
+    - if devise_mapping.rememberable?
+      .login-main__remember
+        = f.check_box :remember_me
+        = f.label :remember_me
+    .actions
+      = f.submit "ログイン", class: "login-main__submit"
+  = render "devise/shared/links"
+
