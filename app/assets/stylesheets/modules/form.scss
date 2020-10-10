@@ -50,6 +50,17 @@
         flex-wrap: wrap;
         position: relative;
         margin: 15px 0;
+        .fa-camera {
+          position: absolute;
+          right: 310px;
+          top: 75px;
+          font-size: 20px;
+        }
+        // .js-file {
+        //   // display: none;
+        //   position: relative;
+        //   top: 100px; 
+        // }
         .error-message {
           margin-top: 220px;
           width: 620px;

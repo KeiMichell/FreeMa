@@ -11,6 +11,7 @@
         %p 最大5枚までアップロードできます
         .item-form__field1__imagebox
           #image-box
+            = icon('fas', 'camera')
             #previews
               - if @item.persisted?
                 - @item.images.each_with_index do |image, i|
@@ -18,9 +19,7 @@
             = f.fields_for :images do |image|
               .js-file_group{"data-index" => "#{image.index}"}
                 = image.file_field :image, class: 'js-file'
-                %i.fas.fa-camera
-                %br
-                %p.js-remove 削除
+                .js-remove 削除
               - if @item.persisted?
                 = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
             - if @item.persisted?
