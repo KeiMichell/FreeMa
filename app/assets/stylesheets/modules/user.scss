@@ -1,5 +1,6 @@
 .signup-main {
   height: 100%;
+  width: 100%;
   background-color: #f5f5f5;
   font-family: 'Source Sans Pro', Helvetica , Arial, '遊ゴシック体', 'YuGoshic', 'メイリオ','Meiryo', sans-serif;
   &__contents {
@@ -43,6 +44,15 @@
     color: #f5f5f5;
     vertical-align: top;
   }
+  &__any {
+    background: #bdbdbd;
+    margin: 0 0 0 8px;
+    border-radius:  2px;
+    padding: 2px 4px;
+    font-size: 12px;
+    color: white;
+    vertical-align: top;
+  }
   &__field {
     margin: 8px 0 0;
     width: 100%;
@@ -75,6 +85,16 @@
     line-height: 48px;
     font-size: 14px;
     margin-bottom: 20px;
+    cursor: pointer;
+  }
+  &__prefecture {
+    padding: 0 10px;
+    height: 48px;
+    width: 355px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    line-height: 1.5;
     cursor: pointer;
   }
 }
