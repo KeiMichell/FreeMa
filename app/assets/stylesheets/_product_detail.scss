@@ -173,8 +173,10 @@ h2 {
 .item-edit-list {
   display: flex;
   text-align: center;
+  &__btn {
+    color: #fff;
+  }
   li {
-    display: block;
     height: 40px;
     width: 150px;
     background-color: #aaaaaa;
@@ -183,9 +185,6 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    a {
-      color: #fff;
-    }
   }
 }
 
