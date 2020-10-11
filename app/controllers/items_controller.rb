@@ -31,10 +31,10 @@ class ItemsController < ApplicationController
     grandchild_category = @item.category
     child_category = @item.category.parent
 
-    @category_parent_array = []
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent
-    end
+    # @category_parent_array = []
+    # Category.where(ancestry: nil).each do |parent|
+    #   @category_parent_array << parent
+    # end
 
     @category_children_array = []
     Category.where(ancestry: child_category.ancestry).each do |children|
