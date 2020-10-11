@@ -29,7 +29,6 @@ class ItemsController < ApplicationController
   def edit
     grandchild_category = @item.category
     child_category = @item.category.parent
-    parent_category = @item.category.parent.parent
 
     @category_parent_array = []
     Category.where(ancestry: nil).each do |parent|
@@ -45,7 +44,6 @@ class ItemsController < ApplicationController
     Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
       @category_grandchildren_array << grandchildren
     end
-
   end
 
   def update
@@ -89,7 +87,7 @@ class ItemsController < ApplicationController
     redirect_to action: :index unless user_signed_in?
   end
 
-  def set_category  
+  def set_category
     @category_parent_array = Category.where(ancestry: nil)
   end
 end
