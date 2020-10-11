@@ -8,29 +8,29 @@ $(document).on('turbolinks:load', function(){
     // 子カテゴリーの表示作成
     function appendChidrenBox(insertHTML){
       var childSelectHtml = '';
-      childSelectHtml = `<div class='item-field__category__choose__added' id= 'children_wrapper'>
-                          <div class='item-field__category__choose1'>
-                            <select class="item-field__category__choose--select" id="child_category" name="item[category_id]">
+      childSelectHtml = `<div class='item-form__field3__categorybox__choose__added' id= 'children_wrapper'>
+                          <div class='item-form__field3__categorybox__choose1'>
+                            <select class="item-form__field3__categorybox__choose--select" id="child_category" name="item[category_id]">
                               <option value="---" data-category="---">---</option>
                               ${insertHTML}
                             <select>
                           </div>
                         </div>`;
-      $('.item-field__category__choose').append(childSelectHtml);
+      $('.item-form__field3__categorybox__choose').append(childSelectHtml);
     }
 
     // 孫カテゴリーの表示作成
     function appendGrandchidrenBox(insertHTML){
       var grandchildSelectHtml = '';
-      grandchildSelectHtml = `<div class='item-field__category__choose__added' id= 'grandchildren_wrapper'>
-                                <div class='item-field__category__choose2'>
-                                  <select class="item-field__category__choose__box--select" id="grandchild_category" name="item[category_id]">
+      grandchildSelectHtml = `<div class='item-form__field3__categorybox__choose__added' id= 'grandchildren_wrapper'>
+                                <div class='item-form__field3__categorybox__choose2'>
+                                  <select class="item-form__field3__categorybox__choose__box--select" id="grandchild_category" name="item[category_id]">
                                     <option value="---" data-category="---">---</option>
                                     ${insertHTML}
                                   </select>
                                 </div>
                               </div>`;
-      $('.item-field__category__choose').append(grandchildSelectHtml);
+      $('.item-form__field3__categorybox__choose').append(grandchildSelectHtml);
     }
 
     // 親カテゴリー選択後のイベント
@@ -63,7 +63,7 @@ $(document).on('turbolinks:load', function(){
     });
 
     // 子カテゴリー選択後のイベント
-    $('.item-field__category').on('change', '#child_category', function(){
+    $('.item-form__field3__categorybox').on('change', '#child_category', function(){
       var child_category_id = $('#child_category option:selected').data('category'); //選択された子カテゴリーのidを取得
       if (child_category_id != "---"){ //子カテゴリーが初期値でないことを確認
         $.ajax({
