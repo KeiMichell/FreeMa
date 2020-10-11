@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :set_item, except: [:index, :new, :create, :show, :purchase]
+  before_action :set_item, except: [:index, :new, :create, :show, :get_category_children, :get_category_grandchildren]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @items = Item.includes(:images).order('created_at DESC')
@@ -14,11 +15,9 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.images.new
-    @category_parent = Category.where(ancestry: nil)
   end
 
   def create
-    @category_parent = Category.where(ancestry: nil)
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
@@ -29,11 +28,26 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @category_parent = Category.where(ancestry: nil)
+    grandchild_category = @item.category
+    child_category = @item.category.parent
+
+    @category_parent_array = []
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent
+    end
+
+    @category_children_array = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+      @category_children_array << children
+    end
+
+    @category_grandchildren_array = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren_array << grandchildren
+    end
   end
 
   def update
-    @category_parent = Category.where(ancestry: nil)
     if item_params[:images_attributes].nil?
       render :edit
     end
@@ -42,6 +56,14 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def get_category_children
+    @category_children = Category.find(params[:parent_id]).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id]).children
   end
 
   def destroy
@@ -69,5 +91,9 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
+  end
+
+  def set_category
+    @category_parent_array = Category.where(ancestry: nil)
   end
 end

@@ -51,13 +51,20 @@
       .item-form__field3
         %p 商品の詳細
         .item-form__field3__categorybox
-          = f.label :"カテゴリー"
-          %span.musticon 必須
-          %br
-          = f.collection_select :category_id, @category_parent, :id, :name, {prompt: "選択してください"}
-          - if @item.errors.include?(:category_id)
-            %p.error-message
-              = @item.errors.full_messages_for(:category_id).first
+          .item-field__category__title
+            = f.label :"カテゴリー"
+            %span.musticon 必須
+            %br
+            .item-field__category__choose
+              - if @item.category == nil
+                = f.collection_select :category_id,  @category_parent_array, :id, :name, {prompt: "--"}, {id: 'parent_category'}
+              - elsif @item.category != nil
+                = f.collection_select :category_id,  @category_parent_array, :id, :name, { selected: @item.category.parent.parent.id }, {id: 'parent_category'}
+                = f.collection_select :category_id, @category_children_array, :id, :name, { selected: @item.category.parent.id }, {id: 'children_wrapper'}
+                = f.collection_select :category_id, @category_grandchildren_array, :id, :name,{ selected: @item.category.id }, {id: 'grandchildren_wrapper'}
+            - if @item.errors.include?(:category_id)
+              %p.error-message
+                = @item.errors.full_messages_for(:category_id).first
         .item-form__field3__brandbox
           = f.label :"ブランド"
           %span.bettericon 任意
