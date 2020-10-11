@@ -62,14 +62,11 @@
               %tr.table__body--row
                 %th.table__body--item カテゴリー
                 %td.table__body--value
-                  = link_to "#" do
-                    メンズ
+                  = link_to "#{@item.category.parent.parent.name}" 
                   %br/
-                  = link_to "#" do
-                    ジャケット
+                  = link_to "#{@item.category.parent.name}"
                   %br/
-                  = link_to "#" do
-                    ノーカラージャケット
+                  = link_to "#{@item.category.name}"
               %tr.table__body--row
                 %th.table__body--item ブランド
                 %td.table__body--value

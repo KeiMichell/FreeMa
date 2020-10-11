@@ -32,8 +32,13 @@
     .item-field__category__title
       = f.label :"カテゴリー"
     .item-field__category__choose
-      = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {id: 'parent_category'}
-  .item-field  
+      - if @item.category == nil
+        = f.collection_select :category_id,  @category_parent_array, :id, :name, {prompt: "--"}, {id: 'parent_category'}
+      - elsif @item.category != nil
+        = f.collection_select :category_id,  @category_parent_array, :id, :name, { selected: @item.category.parent.parent.id }, {id: 'parent_category'}
+        = f.collection_select :category_id, @category_children_array, :id, :name, { selected: @item.category.parent.id }, {id: 'children_wrapper'}
+        = f.collection_select :category_id, @category_grandchildren_array, :id, :name,{ selected: @item.category.id }, {id: 'grandchildren_wrapper'}
+  .item-field
     = f.label :"ブランド"
     %br
     = f.fields_for :brand_attributes do |i|
