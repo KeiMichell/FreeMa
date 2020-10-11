@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def new_address
-    @address =Address.new
+    @address = Address.new
   end
 
   def create_address
