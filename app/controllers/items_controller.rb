@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      @item.images.new
       render :new
     end
   end
@@ -68,6 +69,11 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     redirect_to root_path
+  end
+
+  def purchase
+    @item = Item.find(params[:id])
+    @user = current_user
   end
 
   private

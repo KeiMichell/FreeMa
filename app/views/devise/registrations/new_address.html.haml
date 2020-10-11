@@ -1,40 +1,62 @@
-%h2 住所情報登録
-= form_for @address do |f|
-  = render "devise/shared/error_messages", resource: @address
-  .field
-    = f.label :"お名前（全角）"
-    %br
-    = f.text_field :last_name, placeholder:"姓"
-    = f.text_field :first_name, placeholder:"名"
-  .field
-    = f.label :"お名前ふりがな（全角）"
-    %br
-    = f.text_field :last_name_kana, placeholder:"せい"
-    = f.text_field :first_name_kana, placeholder:"めい"
-  .field
-    = f.label :"郵便番号"
-    %br
-    = f.text_field :postcode, placeholder:"xxx-xxxx"
-  .field
-    = f.label :"都道府県"
-    %br
-    = f.collection_select :prefecture_id, Prefecture.all, :id, :name
-  .field
-    = f.label :"市区町村"
-    %br
-    = f.text_field :city, placeholder:"○○市、〇〇区"
-  .field
-    = f.label :"番地"
-    %br
-    = f.text_field :block, placeholder:"△△丁目××番地"
-  .field
-    = f.label :"建物名"
-    %br
-    = f.text_field :building, placeholder:"□□マンション123"
-  .field
-    = f.label :"電話番号"
-    %br
-    = f.text_field :phone_number, placeholder:"xxx-xxxx-xxxx"
-  .actions
-    = f.submit "登録"
-= render "devise/shared/links"
+.signup-main
+  .signup-main__contents
+    %h2.signup-main__head
+      住所情報登録
+    = form_for @address, class: "signup-main__form" do |f|
+      = render "devise/shared/error_messages", resource: @address
+      .signup-main__input
+        .signup-main__form-field
+          = f.label :"お名前（全角）", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          .signup-main__personal-name
+            = f.text_field :last_name, placeholder:"姓", class: "signup-main__field signup-main__field--side"
+            = f.text_field :first_name, placeholder:"名", class: "signup-main__field"
+        .signup-main__form-field
+          = f.label :"お名前ふりがな（全角）", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          .signup-main__personal-name
+            = f.text_field :last_name_kana, placeholder:"せい", class: "signup-main__field signup-main__field--side"
+            = f.text_field :first_name_kana, placeholder:"めい", class: "signup-main__field"
+        .signup-main__form-field
+          = f.label :"郵便番号", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          = f.text_field :postcode, placeholder:"xxx-xxxx", class: "signup-main__field"
+        .signup-main__form-field
+          = f.label :"都道府県", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "--"}, {class: "signup-main__prefecture"}
+        .signup-main__form-field
+          = f.label :"市区町村", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          = f.text_field :city, placeholder:"○○市、〇〇区", class: "signup-main__field"
+        .signup-main__form-field
+          = f.label :"番地", class: "signup-main__label"
+          %span.signup-main__require
+            必須
+          %br
+          = f.text_field :block, placeholder:"△△丁目××番地", class: "signup-main__field"
+        .signup-main__form-field
+          = f.label :"建物名", class: "signup-main__label"
+          %span.signup-main__any
+            任意
+          %br
+          = f.text_field :building, placeholder:"□□マンション123", class: "signup-main__field"
+        .signup-main__form-field
+          = f.label :"電話番号", class: "signup-main__label"
+          %span.signup-main__any
+            任意
+          %br
+          = f.text_field :phone_number, placeholder:"xxx-xxxx-xxxx", class: "signup-main__field"
+        .actions
+          = f.submit "登録", class: "signup-main__submit"
+        = render "devise/shared/links"
