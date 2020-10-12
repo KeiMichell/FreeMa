@@ -20,6 +20,7 @@
 - has_many: favorites
 - has_many :items, through: :favorites
 - has_many: comments 
+- has_many :sns_credentials
 
 ## Addressesテーブル
 |Column|Type|Options|
@@ -117,3 +118,12 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
+
+## SnsCredentialsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|provider|string|null: false|
+|uid|string|null: false|
+|user|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
