@@ -17,6 +17,9 @@
 - has_many :items
 - has_one: address
 - has_one: card
+- has_many: favorites
+- has_many :items, through: :favorites
+- has_many: comments 
 
 ## Addressesテーブル
 |Column|Type|Options|
@@ -68,6 +71,9 @@
 - belongs_to_active_hash :delivery_fee
 - belongs_to_active_hash :delivery_day
 - belongs_to_active_hash :prefecture
+- has_many: favorites
+- has_many :users, through: :favorites
+- has_many: comments 
 
 ## Imagesテーブル
 |Column|Type|Options|
@@ -92,3 +98,22 @@
 |name|string|null: false|
 ### Association
 - has_many :items
+
+## Favoritesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :item
+
+## Commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|commentl|text|null: false|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :item
