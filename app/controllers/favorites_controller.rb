@@ -1,17 +1,20 @@
 class FavoritesController < ApplicationController
+  before_action :set_item, only: [:create, :destroy]
 
   def create
-    user = current_user
-    item = Item.find(params[:item_id])
-    Favorite.create(user_id: user.id, item_id: item.id)
-    redirect_back(fallback_location: root_path) 
+    @favorite = Favorite.new(user_id: current_user.id, item_id: @item.id)
+    @favorite.save
   end
 
   def destroy
-    user = current_user
-    item = Item.find(params[:item_id])
-    favorite = Favorite.find_by(user_id: user.id, item_id: item.id)
-    favorite.delete
-    redirect_back(fallback_location: root_path) 
+    @favorite = Favorite.find_by(user_id: current_user.id, item_id: @item.id)
+    @favorite.destroy
   end
+
+  private
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
 end

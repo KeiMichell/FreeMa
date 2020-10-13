@@ -31,9 +31,4 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :items, through: :favorites
 
-  # Method
-  def already_favorited?(item)
-    self.favorites.exists?(item_id: item.id)
-  end
-
 end
