@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_025551) do
+ActiveRecord::Schema.define(version: 2020_10_13_005737) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.string "postcode", null: false
+    t.string "last_name", limit: 255, null: false
+    t.string "first_name", limit: 255, null: false
+    t.string "last_name_kana", limit: 255, null: false
+    t.string "first_name_kana", limit: 255, null: false
+    t.string "postcode", limit: 255, null: false
     t.integer "prefecture_id", null: false
-    t.string "city", null: false
-    t.string "block", null: false
-    t.string "building"
-    t.string "phone_number"
+    t.string "city", limit: 255, null: false
+    t.string "block", limit: 255, null: false
+    t.string "building", limit: 255
+    t.string "phone_number", limit: 255
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -32,14 +32,23 @@ ActiveRecord::Schema.define(version: 2020_09_30_025551) do
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
+    t.string "name", limit: 255, null: false
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
-    t.string "ancestry"
+    t.string "name", limit: 255, null: false
+    t.string "ancestry", limit: 255
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_favorites_on_item_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -71,17 +80,17 @@ ActiveRecord::Schema.define(version: 2020_09_30_025551) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "nickname", null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
+    t.string "nickname", limit: 255, null: false
+    t.string "last_name", limit: 255, null: false
+    t.string "first_name", limit: 255, null: false
+    t.string "last_name_kana", limit: 255, null: false
+    t.string "first_name_kana", limit: 255, null: false
     t.date "birthday", null: false
-    t.string "image"
+    t.string "image", limit: 255
     t.text "profile"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string "email", limit: 255, default: "", null: false
+    t.string "encrypted_password", limit: 255, default: "", null: false
+    t.string "reset_password_token", limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false

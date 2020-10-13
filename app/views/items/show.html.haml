@@ -83,9 +83,8 @@
                 
           .optional
             %ul.optional__btn
-              %li.optional__btn--like
-                %i.fa.fa-star
-                  お気に入り
+              #favorite_btn            
+                = render partial: 'favorites/favorite', locals: { item: @item}
               %li.optional__btn--flag
                 = link_to "#", class: "optional__btn--report"do
                   %i.fas.fa-flag         

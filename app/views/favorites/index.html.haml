@@ -1,0 +1,18 @@
+= render partial: 'items/header'
+.favorite-box
+  %h1 お気に入り一覧
+  - if @favorites.present?
+    %ul.favorite-item
+      - @favorites.each do |favorite|
+        %li
+          = link_to item_path(favorite.item.id) do
+            .favorite-image
+              = image_tag "#{favorite.item.images[0].image}", size: '80x80'
+            .favorite-info
+              .favorite-info__name
+                = favorite.item.name
+              .favorite-info__name__price
+                = "¥#{favorite.item.price.to_s(:delimited)}"
+  - else 
+    %p お気に入りがありません
+= render partial: 'items/footer'
