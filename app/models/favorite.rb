@@ -1,8 +1,8 @@
 class Favorite < ApplicationRecord
-    # Association
+  # Association
   belongs_to :user
   belongs_to :item
 
   # Validation
-  validates_uniqueness_of :item_id,  scope: :user_id
+  validates_uniqueness_of :item_id, scope: :user_id
 end
