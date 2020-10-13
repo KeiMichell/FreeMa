@@ -102,8 +102,20 @@
           .optional
             %ul.optional__btn
               %li.optional__btn--like
-                %i.fa.fa-star
-                  お気に入り
+                -if current_user.already_favorited?(@item) 
+                  = link_to item_favorite_path(@item), method: :delete do
+                    .optional__btn--like__favorite
+                      %span お気に入り
+                      = icon('fa', 'star')
+                      %span 
+                        = @item.favorites.count
+                -else 
+                  = link_to item_favorites_path(@item), method: :post do
+                    .optional__btn--like__unfavorite
+                      %span お気に入り
+                      = icon('far', 'star')
+                      %span 
+                        = @item.favorites.count
               %li.optional__btn--flag
                 = link_to "#", class: "optional__btn--report"do
                   %i.fas.fa-flag         

@@ -12,7 +12,9 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_fee
   belongs_to_active_hash :delivery_day
   belongs_to_active_hash :prefecture
-  # Validation_
+  has_many :favorites, dependent: :destroy
+  has_many :users, through: :favorites
+  # Validation
   validates :images, presence: true
   validates :name, presence: true, length: { maximum: 40 }
   validates :detail, presence: true, length: { maximum: 1000 }
