@@ -1,29 +1,11 @@
 %body
-  = render partial: 'items/header'
-  .HeaderNav
-    %ul.BreadCrumbs
-      %li.BreadCrumbs__list
-        = link_to "#", class: "BreadCrumbs__list--content" do
-          FreeMa
-      %li.BreadCrumbs__list
-        %i.fa.fa-angle-right
-      %li.BreadCrumbs__list
-        = link_to "#", class: "BreadCrumbs__list--content" do
-          ベビー・キッズをもっと見る
-      %li.BreadCrumbs__list
-        %i.fa.fa-angle-right
-      %li.BreadCrumbs__list
-        = link_to "#", class: "BreadCrumbs__list--content" do
-          ベビー服（男女兼用）~95
-      %li.BreadCrumbs__list
-        %i.fa.fa-angle-right
-      %li.BreadCrumbs__list
-        = link_to "#", class: "BreadCrumbs__list--content" do
-          アウター
-      %li.BreadCrumbs__list
-        %i.fa.fa-angle-right
-      %li.BreadCrumbs__list--current
-        %p e商品
+  = render partial: 'header'
+  .BreadCrumbs
+    - breadcrumb :parent_category, @item
+    - breadcrumb :child_category, @item, class: 'content'
+    - breadcrumb :grandchild_category, @item, class: 'content'
+    - breadcrumb :current_product, @item, class: 'current'
+    = breadcrumbs separator: "  &rsaquo;  "
 
   .Main
     .Main__show
