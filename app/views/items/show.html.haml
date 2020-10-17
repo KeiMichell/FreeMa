@@ -100,18 +100,45 @@
             -else
 
         .commentBox
-          = form_with model:@comment , local: true do |f|
-            = f.text_area :comment,class: "commentBox__new",wrap: "soft"
+          .commentBox-area
+            - if @comments
+              - @comments.each do |comment|
+                .commentBox__index
+                  %p.commentBox__index__comment-name
+                    = comment.user.nickname
+                  - if comment.user.id == current_user.id
+                    .commentBox__index__list-a
+                      %p 
+                        = comment.comment
+                      .commentBox__index__list-icon
+                        .commentBox__index__list-icon__left
+                          %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
+                          = icon('fa', 'clock')
+                        .commentBox__index__list-icon__right
+                          = link_to item_comment_path(comment.item_id, comment.id), method: :delete do
+                            = icon('fas', 'trash-alt')
+                  - else
+                    .commentBox__index__list-b
+                      %p 
+                        = comment.comment
+                      .commentBox__index__list-icon
+                        .commentBox__index__list-icon__left
+                          %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
+                          = icon('fa', 'clock')
+                        .commentBox__index__list-icon__right
+                          = link_to item_comment_path(comment.item_id, comment.id), method: :delete do
+                            = icon('fas', 'trash-alt')
 
-          %p.commentBox__notice
+          .commentBox__notice
             相手のことを考えて丁寧なコメントをこころがけましょう。
             %br/
             不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %br/
-          = button_tag 'Submit', type: 'submit', class: "commentBox__btn" do
-            %i.fa.fa-comment
-            コメントする
-
+          - if current_user
+            = form_with model: @comment, url: item_comments_path(@item.id) ,method: :post, local: true, id: "new-comment", class: "commentBox__form" do |f|
+              = f.text_area :comment, class: "commentBox__new",wrap: "soft"
+              = button_tag type: 'submit', class: "commentBox__btn" do
+                %i.fa.fa-comment コメントする
+              
         %ul.links
           %li.links__previous
             = link_to "#" do

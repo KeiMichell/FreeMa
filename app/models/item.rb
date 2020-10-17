@@ -14,6 +14,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
+  has_many :comments
   # Validation
   validates :images, presence: true
   validates :name, presence: true, length: { maximum: 40 }

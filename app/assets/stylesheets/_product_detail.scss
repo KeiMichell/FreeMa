@@ -200,12 +200,32 @@ h2 {
 
 // コメント入力欄
 
-
 .commentBox {
   background-color: #fff;
   padding: 24px;
   margin: 10px 0;
-  text-align: center;
+  &__index {
+    margin-bottom: 20px;
+    &__list-a {
+      background-color: #FFFFEE;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    &__list-b {
+      background-color: #eee;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    &__list-icon {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #aaaaaa;
+    }
+  }
+  &__form {
+    text-align: center;
+  }
   &__new {
     width: 96%;
     min-height: 104px;
