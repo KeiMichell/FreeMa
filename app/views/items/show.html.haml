@@ -100,9 +100,9 @@
             -else
 
         .commentBox
-          .commentBox__index
-            - if @comments
-              - @comments.each do |comment|
+          - if @comments
+            - @comments.each do |comment|
+              .commentBox__index
                 %p.commentBox__index__comment-name
                   = comment.user.nickname
                 - if comment.user.id == current_user.id
