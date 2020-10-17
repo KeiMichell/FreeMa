@@ -9,8 +9,11 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
-    comment.destroy
-    redirect_to item_path(comment.item.id)
+    if comment.destroy
+      redirect_to item_path(comment.item.id), notice: "削除が完了しました"
+    else
+      redirect_to item_path(comment.item.id), alert: "削除が失敗しました"
+    end
   end
 
   private
