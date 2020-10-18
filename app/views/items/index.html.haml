@@ -95,60 +95,29 @@
         %h3.categoryHead__title
           新規投稿商品
     .category__lists
-      = link_to "#", class:"categoryList" do
-        .categoryList__img
-          = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG'
-        .categoryList__body
-          %h3.categoryList__body__name
-            テスト
-          %ul.categoryList__body__data
-            %li 10000
-            %li.fa.fa-star 
-              1
-          %p (税込)
-      = link_to "#", class:"categoryList" do
-        .categoryList__img
-          = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG'
-        .categoryList__body
-          %h3.categoryList__body__name
-            ee
-          %ul.categoryList__body__data
-            %li 1000
-            %li.fa.fa-star 
-              3
-          %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
+      - @items.each do |item|
+        .categoryList
+          -if item.buyer_id.present?
+            %p SOLD
+          -else 
+            .categoryList__img
+              = link_to item_path(item) do
+                = image_tag "#{item.images[0].image}", size: '150x150'
           .categoryList__body
             %h3.categoryList__body__name
-              product3
-            %ul.categoryList__body__data
-              %li 30000
-              %li.fa.fa-star 
-                1
-            %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png'
-          .categoryList__body
-            %h3.categoryList__body__name
-              product2
-            %ul.categoryList__body__data
-              %li 20000
-              %li.fa.fa-star 
-                1
-            %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png'
-          .categoryList__body
-            %h3.categoryList__body__name
-              product1
-            %ul.categoryList__body__data
-              %li 10000
-              %li.fa.fa-star 
-                1
+              = item.name
+            .categoryList__body__data
+              %ul
+                %li
+                  = "#{item.price.to_s(:delimited)}円" 
+                // お気に入り機能実装後
+                -# %li
+                -#   -if Favorite.exists?
+                -#     = icon('fa', 'star')
+                -#   -else
+                -#     = icon('far', 'star')
+                -#   %span 
+                -# = item.favorites.count
             %p (税込)
   %section.mainPickbrand
     %h2.mainPickbrand__title
