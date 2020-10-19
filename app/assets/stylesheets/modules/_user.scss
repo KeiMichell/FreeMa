@@ -7,7 +7,7 @@
 }
 
 .active {
-   width: calc(100%/2);
+   width: calc(100% / 2);
          text-align: center;
          border-style: solid;
          border-color: #3CCACE transparent transparent transparent;
@@ -63,8 +63,6 @@
         &__cate{
            margin: 0 15px;
         }
-        &__brand{
-        }
      &__right{
         display: flex;
         justify-content: space-between;
@@ -99,7 +97,7 @@ ul{
    max-width: 1040px;
    margin: 0 auto;
    padding: 16px 0;
-   @extend .clearfix;
+   @extend.clearfix;
 }
 
 li{
@@ -111,7 +109,7 @@ li{
 .main--container{
    //background-color: yellowgreen;
    margin: 40px 200px;
-   @extend .clearfix;
+   @extend.clearfix;
    &__content{
      height: 1189px;
      width: 700px;
@@ -158,13 +156,6 @@ li{
    .mypage--tabs{
       justify-content: space-around;
       height: 50px;
-      // .active{
-      //    width: calc(100%/2);
-      //    text-align: center;
-      //    border-style: solid;
-      //    border-color: #3CCACE transparent transparent transparent;
-      //    border-width: 1px;
-     // }
    }
       .tab--content{
          .mypage--item--listtab{
@@ -174,8 +165,6 @@ li{
             .items{   
                display: flex;
                justify-content: space-between;
-               .figure{
-               }
             }
          }
       }
@@ -204,7 +193,6 @@ li{
          margin-bottom: 0cm;
          position: absolute;
          bottom: 10px;
-         margin: 0;
          padding: 0;
          .clock1{
             margin: 5px auto;
