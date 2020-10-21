@@ -10,35 +10,19 @@ class CardsController < ApplicationController
       @card_brand = @card_info.brand
       @exp_month = @card_info.exp_month.to_s
       @exp_year = @card_info.exp_year.to_s.slice(2,3) 
-
-      case @card_brand
-      when "Visa"
-        @card_image = "visa.svg"
-      when "JCB"
-        @card_image = "jcb.svg"
-      when "MasterCard"
-        @card_image = "master-card.svg"
-      when "American Express"
-        @card_image = "american_express.svg"
-      when "Diners Club"
-        @card_image = "dinersclub.svg"
-      when "Discover"
-        @card_image = "discover.svg"
-      end
     end
   end
 
 
   def new
     @card = Card.where(user_id: current_user.id).first
-    redirect_to action: "index" if @card.present?
-end
+    redirect_to card_path(@card) if @card.present?
+  end
 
   def create
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-
     if params['payjpToken'].blank?
-      render "new"
+      redirect_to new_card_url
     else
       customer = Payjp::Customer.create(
         description: 'test',
@@ -46,12 +30,11 @@ end
         card: params['payjpToken'],
         metadata:{user_id: current_user.id}
       )
-
-      @card = Creditcard.new(user_id: current_user.id, payjp_id: customer.id)
+      @card = Card.new(user_id: current_user.id, payjp_id: customer.id)
       if @card.save
-        redirect_to action: "index", notice:"支払情報の登録が完了しました"
+        redirect_to card_path(@card.id), notice:"支払情報の登録が完了しました"
       else
-        render 'new'
+        render new_cards_path
       end
     end
   end
@@ -60,10 +43,10 @@ end
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(@card.payjp_id)
     customer.delete
-    if @card.destoroy
-      redirect_to action: "index", notice: "削除しました"
+    if @card.destroy
+      redirect_to cards_path, notice: "削除しました"
     else
-      redirect_to action: "index", alert: "削除できませんでした"
+      redirect_to cards_path, alert: "削除できませんでした"
     end
   end
 
@@ -91,6 +74,15 @@ end
     end
   end
 
+  def show
+    if @card.blank?
+      redirect_to new_card_url 
+    else
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.payjp_id)
+    end
+  end
 
   private
   def set_card
