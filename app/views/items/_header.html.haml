@@ -58,14 +58,14 @@
         %li.listsLeft__item--second
           =link_to "#", class: "brandbtn" do
             ブランド
-        %ul
+        %ul.listsRight
           -if user_signed_in?
-            %li
-              = link_to "ログアウト", destroy_user_session_path, method: :delete
-            %li
+            %li.listsRight__item--new
               =link_to "マイページ", "#"
+            %li.listsRight__item--login
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
           -else
-            %li
+            %li.listsRight__item--login
               =link_to "ログイン", new_user_session_path 
-            %li
+            %li.listsRight__item--new
               =link_to "新規登録", new_user_registration_path

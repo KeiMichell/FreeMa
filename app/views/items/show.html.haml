@@ -1,0 +1,167 @@
+%body
+  = render partial: 'header'
+  .BreadCrumbs
+    - breadcrumb :parent_category, @item
+    - breadcrumb :child_category, @item, class: 'content'
+    - breadcrumb :grandchild_category, @item, class: 'content'
+    - breadcrumb :current_product, @item, class: 'current'
+    = breadcrumbs separator: "  &rsaquo;  "
+
+  .Main
+    .Main__show
+      .Main__top
+        .itemBox
+          %h2.itemBox__name
+            = @item.name
+          .itemBox__body
+            %ul
+              %li
+                = image_tag "#{@item.images[0].image}", size: '500x400', class: 'itemBox__body--top', alt: "Top Image"
+                %ul.itemBox__body--bottom
+                  - @item.images[1..4].each do |image|
+                    %li
+                      =image_tag "#{image.image}", size: '100x100', alt: "Sub Image"
+        
+          .itemBox__price
+            %span.itemBox__price--number
+              = "¥#{@item.price.to_s(:delimited)}"
+            .itemBox__price--detail
+              %span
+                (税込み)
+              %span
+                -if @item.delivery_fee_id == 1
+                  送料込み
+                -elsif @item.delivery_fee_id == 2
+                  着払い
+          %p.itemDetail
+            =@item.detail
+
+          -if user_signed_in?
+            -if @item.seller_id != current_user.id
+              = link_to purchase_item_path(@item) do
+                .item-purchase-btn
+                  購入画面に進む
+
+          %table.table
+            %tbody.table__body
+              %tr.table__body--row
+                %th.table__body--item 出品者
+                %td.table__body--value 
+                  = @item.seller.nickname
+              %tr.table__body--row
+                %th.table__body--item カテゴリー
+                %td.table__body--value
+                  = link_to "#{@item.category.parent.parent.name}", "#"
+                  %br/
+                  = link_to "#{@item.category.parent.name}", "#"
+                  %br/
+                  = link_to "#{@item.category.name}", "#"
+              %tr.table__body--row
+                %th.table__body--item ブランド
+                %td.table__body--value
+                  = @item.brand.name
+              %tr.table__body--row
+                %th.table__body--item 商品のサイズ
+                %td.table__body--value
+              %tr.table__body--row
+                %th.table__body--item 配送料の状態
+                %td.table__body--value 
+                  = @item.condition.name
+              %tr.table__body--row
+                %th.table__body--item 配送料の負担
+                %td.table__body--value
+                  = @item.delivery_fee.name
+              %tr.table__body--row
+                %th.table__body--item 配送元の地域
+                %td.table__body--value
+                  = link_to "#" do
+                    = @item.prefecture.name
+              %tr.table__body--row
+                %th.table__body--item 発送日の目安
+                %td.table__body--value
+                  = @item.delivery_day.name
+                
+          .optional
+            %ul.optional__btn
+              #favorite_btn            
+                = render partial: 'favorites/favorite', locals: { item: @item}
+              %li.optional__btn--flag
+                = link_to "#", class: "optional__btn--report"do
+                  %i.fas.fa-flag         
+                    不適切な商品の通報
+          
+          -if user_signed_in?
+            -if @item.seller_id == current_user.id
+              %ul.item-edit-list
+                %li
+                  = link_to '編集', edit_item_path(@item), class: "item-edit-list__btn"
+                %li
+                  = link_to '削除', item_path(@item), method: :delete, class: "item-edit-list__btn"
+            -else
+
+        .commentBox
+          .commentBox-area
+            - if @comments
+              - @comments.each do |comment|
+                .commentBox__index
+                  %p.commentBox__index__comment-name
+                    = comment.user.nickname
+                  - if comment.user.id == current_user.id
+                    .commentBox__index__list-a
+                      %p 
+                        = comment.comment
+                      .commentBox__index__list-icon
+                        .commentBox__index__list-icon__left
+                          %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
+                          = icon('fa', 'clock')
+                        .commentBox__index__list-icon__right
+                          = link_to item_comment_path(comment.item_id, comment.id), method: :delete do
+                            = icon('fas', 'trash-alt')
+                  - else
+                    .commentBox__index__list-b
+                      %p 
+                        = comment.comment
+                      .commentBox__index__list-icon
+                        .commentBox__index__list-icon__left
+                          %time(datetime="#{comment.created_at}")= time_ago_in_words(comment.created_at)
+                          = icon('fa', 'clock')
+                        .commentBox__index__list-icon__right
+                          = link_to item_comment_path(comment.item_id, comment.id), method: :delete do
+                            = icon('fas', 'trash-alt')
+
+          .commentBox__notice
+            相手のことを考えて丁寧なコメントをこころがけましょう。
+            %br/
+            不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          - if current_user
+            = form_with model: @comment, url: item_comments_path(@item.id) ,method: :post, local: true, id: "new-comment", class: "commentBox__form" do |f|
+              = f.text_area :comment, class: "commentBox__new",wrap: "soft"
+              = button_tag type: 'submit', class: "commentBox__btn" do
+                %i.fa.fa-comment コメントする
+              
+        %ul.links
+          %li.links__previous
+            = link_to "#" do
+              %i.fa.fa-angle-left
+              %span 前の商品
+          %li.links__next
+            = link_to "#" do
+              %span 後ろの商品
+              %i.fa.fa-angle-right
+
+        .relatedItems
+          = link_to "#", class: "relatedItems__link" do
+            ベビー・キッズをもっと見る
+          
+            = link_to "#", class: "relatedItems__product" do
+              = image_tag src='/assets/tozan_kutsu.png', alt: "Left Image", class: "relatedItems__product--image"
+              .relatedItems__product--body
+                .relatedItems__product--name product3
+                %ul.relatedItems__product--details
+                  %li
+                    ¥3000
+                  %li
+                    %i.fa.fa-star.LikeIcon
+                %p.relatedItems__product--tax (税込)
+
+  = render partial: 'footer'
