@@ -29,11 +29,6 @@
    }
 }
  
-
-.header--top{
-   //background-color: yellowgreen;
-
-}
    
 .header--logo{
       float: left;
@@ -69,9 +64,8 @@
      }
         &__news{
            margin: 0 15px;
-           //position: absolute;
         }&__count{
-           //position: absolute
+
         }
         &__todo{
            margin: 0 15px;
@@ -107,7 +101,6 @@ li{
 //メイン
 
 .main--container{
-   //background-color: yellowgreen;
    margin: 40px 200px;
    @extend.clearfix;
    &__content{
@@ -125,7 +118,6 @@ li{
 
 .to--mypage{
    height: 111px;
-   //position: relative;
    margin: 0 auto;
       .user--image{
          height: 60px;
@@ -134,7 +126,6 @@ li{
          align-items: center;
          justify-content: center;
          margin: 0 auto;
-         //position: absolute;
       }
 }
 .users{
@@ -210,7 +201,6 @@ li{
    height: 60px;
    padding: 0;
    margin: 0 auto;
-   //text-align: center;
    display: flex;
    flex-direction: column;
    .notification__list{
