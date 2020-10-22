@@ -60,6 +60,21 @@ h2 {
         margin-right: 5px;
      }
     }
+    &__sold-message {
+      height: 50px;
+      width: 400px;
+      margin: 0 auto;
+      background-color: gray;
+      border: none;
+      color: #fff;
+      font-size: 25px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 50px;
+      border-radius: 2px;
+    }
   }
   &__price {
     margin: 24px 0 24px;
