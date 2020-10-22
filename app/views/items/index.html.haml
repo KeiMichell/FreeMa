@@ -95,121 +95,59 @@
         %h3.categoryHead__title
           新規投稿商品
     .category__lists
-      = link_to "#", class:"categoryList" do
-        .categoryList__img
-          = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG'
-        .categoryList__body
-          %h3.categoryList__body__name
-            テスト
-          %ul.categoryList__body__data
-            %li 10000
-            %li.fa.fa-star 
-              1
-          %p (税込)
-      = link_to "#", class:"categoryList" do
-        .categoryList__img
-          = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG'
-        .categoryList__body
-          %h3.categoryList__body__name
-            ee
-          %ul.categoryList__body__data
-            %li 1000
-            %li.fa.fa-star 
-              3
-          %p (税込)
-        = link_to "#", class:"categoryList" do
+      - @items.each do |item|
+        .categoryList
           .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
+            = link_to item_path(item) do
+              = image_tag "#{item.images[0].image}", size: '150x150'
           .categoryList__body
             %h3.categoryList__body__name
-              product3
-            %ul.categoryList__body__data
-              %li 30000
-              %li.fa.fa-star 
-                1
-            %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png'
-          .categoryList__body
-            %h3.categoryList__body__name
-              product2
-            %ul.categoryList__body__data
-              %li 20000
-              %li.fa.fa-star 
-                1
-            %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png'
-          .categoryList__body
-            %h3.categoryList__body__name
-              product1
-            %ul.categoryList__body__data
-              %li 10000
-              %li.fa.fa-star 
-                1
-            %p (税込)
+              = item.name
+            .categoryList__body__data
+              .categoryList__body__data__price
+                = "#{item.price.to_s(:delimited)}円" 
+                %p (税込)
+              .categoryList__body__data__favorite
+                -if item.favorites.exists?
+                  = icon('fa', 'star')
+                -else
+                  = icon('far', 'star')
+                %span 
+                  = item.favorites.count
+          -if item.buyer_id.present?
+            .categoryList__sold
+              .categoryList__sold__inner 
+                SOLD
   %section.mainPickbrand
     %h2.mainPickbrand__title
       ピックアップブランド
-      .category
-        = link_to "#", class: "categoryHead" do
+    .category
+      = link_to "#", class:"categoryHead"  do
+        %h3.categoryHead__title
           アーカイバ
-      .category__lists
-        = link_to "#", class:"categoryList" do
+    .category__lists
+      - @items.each do |item|
+        .categoryList
           .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG'
+            = link_to item_path(item) do
+              = image_tag "#{item.images[0].image}", size: '150x150'
           .categoryList__body
             %h3.categoryList__body__name
-              テスト
-            %ul.categoryList__body__data
-              %li 10000
-              %li.fa.fa-star 
-                1
-            %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG'
-          .categoryList__body
-            %h3.categoryList__body__name
-              ee
-            %ul.categoryList__body__data
-              %li 1000
-              %li.fa.fa-star 
-                3
-            %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
-          .categoryList__body
-            %h3.categoryList__body__name
-              product3
-            %ul.categoryList__body__data
-              %li 30000
-              %li.fa.fa-star 
-                1
-            %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png'
-          .categoryList__body
-            %h3.categoryList__body__name
-              product2
-            %ul.categoryList__body__data
-              %li 20000
-              %li.fa.fa-star 
-                1
-            %p (税込)
-        = link_to "#", class:"categoryList" do
-          .categoryList__img
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png'
-          .categoryList__body
-            %h3.categoryList__body__name
-              product1
-            %ul.categoryList__body__data
-              %li 10000
-              %li.fa.fa-star 
-                1
-            %p (税込)
+              = item.name
+            .categoryList__body__data
+              .categoryList__body__data__price
+                = "#{item.price.to_s(:delimited)}円" 
+                %p (税込)
+              .categoryList__body__data__favorite
+                -if item.favorites.exists?
+                  = icon('fa', 'star')
+                -else
+                  = icon('far', 'star')
+                %span 
+                  = item.favorites.count
+          -if item.buyer_id.present?
+            .categoryList__sold
+              .categoryList__sold__inner 
+                SOLD
+
 = render partial: 'footer'
