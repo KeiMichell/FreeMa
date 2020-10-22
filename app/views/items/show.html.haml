@@ -21,7 +21,6 @@
                   - @item.images[1..4].each do |image|
                     %li
                       =image_tag "#{image.image}", size: '100x100', alt: "Sub Image"
-        
           .itemBox__price
             %span.itemBox__price--number
               = "¥#{@item.price.to_s(:delimited)}"
@@ -33,6 +32,9 @@
                   送料込み
                 -elsif @item.delivery_fee_id == 2
                   着払い
+          -if @item.buyer_id.present?
+            .itemBox__body__sold-message
+              売り切れました
           %p.itemDetail
             =@item.detail
 
