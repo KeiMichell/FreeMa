@@ -8,7 +8,6 @@ describe Item do
     end
 
     it "必須項目が入力されていればOK" do
-      # @item = build(:item)
       @item.valid?
       expect(@item).to be_valid
     end
