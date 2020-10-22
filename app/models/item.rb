@@ -25,7 +25,7 @@ class Item < ApplicationRecord
   validates :delivery_fee_id, presence: true
   validates :delivery_day_id, presence: true
   validates :category_id, presence: true
-  #Method
+  # Method
   def self.search(search)
     if search != ""
       Item.where('text LIKE(?)', "%#{search}%")
