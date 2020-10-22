@@ -97,12 +97,9 @@
     .category__lists
       - @items.each do |item|
         .categoryList
-          -if item.buyer_id.present?
-            %p SOLD
-          -else 
-            .categoryList__img
-              = link_to item_path(item) do
-                = image_tag "#{item.images[0].image}", size: '150x150'
+          .categoryList__img
+            = link_to item_path(item) do
+              = image_tag "#{item.images[0].image}", size: '150x150'
           .categoryList__body
             %h3.categoryList__body__name
               = item.name
@@ -110,15 +107,18 @@
               %ul
                 %li
                   = "#{item.price.to_s(:delimited)}円" 
-                // お気に入り機能実装後
-                -# %li
-                -#   -if Favorite.exists?
-                -#     = icon('fa', 'star')
-                -#   -else
-                -#     = icon('far', 'star')
-                -#   %span 
-                -# = item.favorites.count
+                %li
+                  -if item.favorites.exists?
+                    = icon('fa', 'star')
+                  -else
+                    = icon('far', 'star')
+                  %span 
+                    = item.favorites.count
             %p (税込)
+          -if item.buyer_id.present?
+            .categoryList__sold
+              .categoryList__sold__inner 
+                SOLD
   %section.mainPickbrand
     %h2.mainPickbrand__title
       ピックアップブランド
