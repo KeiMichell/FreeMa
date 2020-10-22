@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery :except [:basic_auth]
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?  
 
