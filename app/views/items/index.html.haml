@@ -99,7 +99,7 @@
         .categoryList
           .categoryList__img
             = link_to item_path(item) do
-              = image_tag "#{item.images[0].image}", size: '150x150'
+              = image_tag "#{item.images[0].image}"
           .categoryList__body
             %h3.categoryList__body__name
               = item.name
@@ -130,7 +130,7 @@
         .categoryList
           .categoryList__img
             = link_to item_path(item) do
-              = image_tag "#{item.images[0].image}", size: '150x150'
+              = image_tag "#{item.images[0].image}"
           .categoryList__body
             %h3.categoryList__body__name
               = item.name
