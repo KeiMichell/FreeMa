@@ -15,7 +15,7 @@
 }
 
 
-//ヘッダー部分
+// ヘッダー部分
 
 .header {
    height: 110px;
@@ -82,21 +82,21 @@
    position: relative
 }
 
-//パンくず
-ul{
-   display: flex;
-   justify-content: start;
-   max-width: 1040px;
-   margin: 0 auto;
-   padding: 16px 0;
-   @extend.clearfix;
-}
+// パンくず
+// ul{
+//    display: flex;
+//    justify-content: start;
+//    max-width: 1040px;
+//    margin: 0 auto;
+//    padding: 16px 0;
+//    @extend.clearfix;
+// }
 
-li{
-   padding: 0 15px 0 0;
-}
+// li{
+//    padding: 0 15px 0 0;
+// }
 
-//メイン
+// メイン
 
 .main--container{
    margin: 40px 200px;
@@ -218,7 +218,7 @@ li{
    }
 }
 
-//マイページ 右 下部
+// マイページ 右 下部
 
 .mypage--tab--container{
    height: 328px;

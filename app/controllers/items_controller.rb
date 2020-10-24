@@ -6,12 +6,14 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:images).order("RAND()").limit(5)
+    @user = current_user
   end
 
   def show
     @item = Item.find(params[:id])
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
+    @user = current_user
   end
 
   def new
