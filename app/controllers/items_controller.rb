@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
 
   def index
-    @items = Item.includes(:images).order("RAND()").limit(5)
+    @items = Item.includes(:images).order('created_at DESC')
   end
 
   def show
@@ -76,6 +76,17 @@ class ItemsController < ApplicationController
   def purchase
     @item = Item.find(params[:id])
     @user = current_user
+    @card = Card.where(user_id: current_user.id).first
+    @address = Address.where(user_id: current_user.id).first
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    charge = Payjp::Charge.create(
+      amount: @item.price,
+      customer: Payjp::Customer.retrieve(@card.customer_id),
+      currency: 'jpy'
+    )
+    @item_buyer= Item.find(params[:id])
+    @item_buyer.update( buyer_id: current_user.id)
+
   end
 
   private

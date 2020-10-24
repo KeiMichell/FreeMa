@@ -9,9 +9,10 @@ class CardsController < ApplicationController
       @card_info = customer.cards.retrieve(customer.default_card)
       @card_brand = @card_info.brand
       @exp_month = @card_info.exp_month.to_s
-      @exp_year = @card_info.exp_year.to_s.slice(2, 3)
+      @exp_year = @card_info.exp_year.to_s.slice(2,3) 
     end
   end
+
 
   def new
     @card = Card.where(user_id: current_user.id).first
@@ -44,30 +45,6 @@ class CardsController < ApplicationController
     customer.delete
     if @card.destroy
       redirect_to cards_path
-    end
-  end
-
-  def buy
-    @item = Item.find(params[:item_id])
-    if @item.buyer.present? 
-      redirect_back(fallback_location: root_path) 
-    elsif @card.blank?
-      redirect_to action: "new"
-      flash[:alert] = '購入にはクレジットカード登録が必要です'
-    else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      Payjp::Charge.create(
-      amount: @item.price,
-      customer: @card.customer_id,
-      currency: 'jpy',
-      )
-      if @item.update(buyer_id: current_user.id)
-        flash[:notice] = '購入しました。'
-        redirect_to controller: 'items', action: 'show', id: @item.id
-      else
-        flash[:alert] = '購入に失敗しました。'
-        redirect_to controller: 'items', action: 'show', id: @item.id
-      end
     end
   end
 
