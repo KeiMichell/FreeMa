@@ -9,10 +9,9 @@ class CardsController < ApplicationController
       @card_info = customer.cards.retrieve(customer.default_card)
       @card_brand = @card_info.brand
       @exp_month = @card_info.exp_month.to_s
-      @exp_year = @card_info.exp_year.to_s.slice(2,3) 
+      @exp_year = @card_info.exp_year.to_s.slice(2, 3)
     end
   end
-
 
   def new
     @card = Card.where(user_id: current_user.id).first
