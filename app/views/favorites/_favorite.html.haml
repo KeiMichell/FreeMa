@@ -1,6 +1,6 @@
 
 %li.optional__btn--like
-  -if Favorite.exists?(user_id: current_user.id, item_id: item.id)
+  -if user_signed_in? && Favorite.exists?(user_id: current_user.id, item_id: item.id) 
     = link_to(item_favorite_path(@item, item.id), method: :delete, remote: true) do
       .optional__btn--like__favorite
         %span お気に入り
