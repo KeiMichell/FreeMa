@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :product_detail, only: [:show]
+  resources :users, only: :show
   resources :items do
     collection do
       get 'get_category_children', to: 'items#get_category_children', defaults: { format: 'json' }
