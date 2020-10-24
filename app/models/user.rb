@@ -31,5 +31,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :items, through: :favorites
   has_many :comments
+  has_one :card
 
 end

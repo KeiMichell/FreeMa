@@ -1,13 +1,16 @@
 .Mypage-main
+  .Mypage-main__icon
+    = link_to image_tag(src = "http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"), root_path
   .Mypage-main__contents
     %section.Payment
-      %h2.Payment__head 支払い情報
+      %h2.Payment__head
+        支払い方法
       .Payment__inner
         %section.creditcard_section
           .container
             - if @card.present?
-              = link_to "カード詳細", card_path(@card.id), method: :get, class: 'Payment__inner__add-btn'
+              = link_to "クレジットカード詳細", card_path(@card.id), method: :get, class: 'Payment__inner__add-btn'
             - else
               = link_to new_card_path, class: 'Payment__inner__add-btn' do
                 = icon('far', 'credit-card')
-                カードを登録する
+                クレジットカードを登録する
