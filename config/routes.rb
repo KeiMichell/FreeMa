@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :users, only: :show
   resources :items do
     collection do
       get 'get_category_children', to: 'items#get_category_children', defaults: { format: 'json' }
@@ -21,4 +20,6 @@ Rails.application.routes.draw do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
   end
+  resources :users, only: :show
 end
+
