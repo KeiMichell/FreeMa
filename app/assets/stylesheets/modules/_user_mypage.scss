@@ -1,0 +1,268 @@
+.clearfix {
+   &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+}
+
+.active {
+   width: calc(100% / 2);
+         text-align: center;
+         border-style: solid;
+         border-color: #3CCACE transparent transparent transparent;
+         border-width: 1px;
+}
+
+
+// ヘッダー部分
+
+.header {
+   height: 110px;
+   width: 100%;
+   background-color: white;
+   &--inner{
+      height: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 15px 0 0;
+   }
+}
+ 
+   
+.header--logo{
+      float: left;
+    
+}
+
+.header--searchbox{
+   display: flex;
+   margin: 5px;
+}
+
+.header--form__search{
+   height: 100%;
+}
+
+
+.header--nav{
+   &__box{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+   }
+     &__left {
+        display: flex;
+        justify-content: space-between;
+     }
+        &__cate{
+           margin: 0 15px;
+        }
+     &__right{
+        display: flex;
+        justify-content: space-between;
+     }
+        &__news{
+           margin: 0 15px;
+        }
+        &__todo{
+           margin: 0 15px;
+        }
+        &__mypage{
+           margin: 0 15px;
+        }
+}
+
+.logo {
+   color: #3CCACE;
+}
+
+.bell{
+   display: inline-block;
+   position: relative
+}
+
+// パンくず
+// ul{
+//    display: flex;
+//    justify-content: start;
+//    max-width: 1040px;
+//    margin: 0 auto;
+//    padding: 16px 0;
+//    @extend.clearfix;
+// }
+
+// li{
+//    padding: 0 15px 0 0;
+// }
+
+// メイン
+
+.main--container{
+   margin: 40px 200px;
+   @extend.clearfix;
+   &__content{
+     height: 1189px;
+     width: 700px;
+     background-color:white;
+     float: right;
+   }
+   &--mypage__usericon{
+      height: 200px;
+      padding: 20px;
+      position: relative;
+   }
+}
+
+.to--mypage{
+   height: 111px;
+   margin: 0 auto;
+      .user--image{
+         height: 60px;
+         width: 60px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin: 0 auto;
+      }
+}
+.users{
+   margin: 40px 0 0 0 ;
+}
+.bold{
+   margin: 10px 5px 0 0;
+   text-align: center;
+}
+
+.mypage__number{
+   background-color: white;
+   display: flex;
+   position: absolute;
+   margin: 0 260px 0;
+}
+
+.mypage--tab--container__notification--todo{
+   .mypage--tabs{
+      justify-content: space-around;
+      height: 50px;
+   }
+      .tab--content{
+         .mypage--item--listtab{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .items{   
+               display: flex;
+               justify-content: space-between;
+            }
+         }
+      }
+}
+
+
+.mypage-item-image{
+   height: 60px;
+   width: 100px;
+}
+
+
+.mypage--item--body{
+   justify-content: space-between;
+   display: flex;
+   .mypage--item--text{
+      width: calc(675px - 195px);
+      margin: 15px 0;
+      position: relative;
+      .text{
+         margin: 20px 0 0 0 ;
+         white-space: nowrap;
+      }
+      .time{
+         display: flex;
+         margin-bottom: 0cm;
+         position: absolute;
+         bottom: 10px;
+         padding: 0;
+         .clock1{
+            margin: 5px auto;
+            color: #3CCACE;
+         }
+      }
+   }
+   .arrow{
+      margin: 50px 5px;
+   }
+}
+
+.mypage--notification--list {
+   width: 100%;
+   height: 60px;
+   padding: 0;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   .notification__list{
+      margin: 5px 16px;
+      height: 56px;
+      width: 668px;
+      background-color:#EEEEEE;
+      border-style: solid;
+      border-color: #3CCACE;
+      border-width: 1px;
+      .notification__text{
+         text-align: center;
+         display: flex;
+         flex-direction: column;
+         margin-top: 14px;
+      }
+   }
+}
+
+// マイページ 右 下部
+
+.mypage--tab--container{
+   height: 328px;
+   margin: 40px 0 0;
+   .tab--head{
+      height: 72px;
+      padding: 0 16px;
+      font-size: 16px;
+      text-align: center;
+   }
+   .tab--content{
+      .mypage--itemlist{
+         height: 236px;
+         .item--not--found{
+            padding: 160px 0 60px;
+            width: 100%;
+            color: #ccc;
+         }
+      }
+   }
+}
+
+//マイページ 左 nav
+
+
+.mypage--nav{
+   max-width: 280px;
+   .mypage--nav--list{
+   display: flex;
+   flex-direction: column;
+   .mypage--navlist--contents{
+      background-color: white;
+      padding: 16px;
+      position: relative;
+      display: block;
+      min-height: 48px;
+      font-size: 14px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #EEEEEE;
+      text-align: center;
+      line-height: 41px;
+      }
+   }
+}
+
+

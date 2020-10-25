@@ -1,0 +1,221 @@
+.header
+  .header--inner
+    .header--top
+      .header--logo
+        = image_tag 'logo.png', alt: 'FreeMa-logo', class: 'header--logo__image'
+      .header--searchbox
+        .header-form
+          = text_field_tag :content, '', class: 'header--form__search', placeholder: '何かお探しですか？'
+          = button_tag 'Botton', type: 'button', class: 'header--submit__btn' do
+            =icon('fas', 'search')
+    .header--nav
+      .header--nav__box
+        .header--nav__left
+          .header--nav__cate
+            =icon('fas', 'list', class: 'logo')
+            カテゴリーから探す
+          .header--nav__brand
+            =icon('fas', 'tag', class: 'logo')
+            ブランドから探す
+        .header--nav__right
+          .header--nav__news
+            =icon('fas','bell', class: 'logo bell')
+            お知らせ
+            .header--nav__count
+          .header--nav__todo
+            =icon('fas', 'check', class: 'logo')
+            やる事リスト
+          .header--nav__mypage
+            マイページ
+  
+.nav--bread__crumbs
+  %ul.bread__crumbs
+    %li.bread__crumbs__list
+      =link_to "#", class: "list__elements" do
+        FreeMa
+    %li.bread__crumbs__list
+      %i.fa.fa-angle-right
+    %li.bread__crumbs__list
+      =link_to "#", class:"list__elements" do
+        マイページ
+
+.main--container
+  .main--container__content
+    .main--container--mypage__usericon
+      =link_to "#", class: "to--mypage" do
+        %figure.users
+          =image_tag "member_photo_noimage_thumb.png", alt: "user-image", class: "user--image"
+      .mypage__number
+        %h2.bold
+          %span
+            評価
+            %span.bold
+              44
+          %span
+            出品数
+            %span.bold
+              10
+    .mypage--tab--container__notification--todo
+      %ul.mypage--tabs
+        %li.active
+          %h3
+            =link_to '#', class: "tab--notification" do
+              お知らせ
+        %li.active
+          %h3
+            =link_to '#', datatoggle: 'tab' do
+              やることリスト
+      .tab--content 
+        %ul#mypage--tab-notification.mypage--item--listtab
+          %li.items
+            =link_to '#', class: 'mypage--item--link' do
+              %figure
+                =image_tag 'logo.png', alt: 'FreeMa--logo', class: 'mypage-item-image'
+            .mypage--item--body
+              .mypage--item--text 
+                .text
+                  実質300円引きで購入できる！今すぐcheck!!
+                .time
+                  =icon('fas', 'clock clock1')
+                  %span
+                    1日前
+              =icon('fas', 'angle-double-right arrow')
+          %li.items
+            =link_to '#', class: 'mypage--item--link' do
+              %figure
+                =image_tag 'logo.png', alt: 'FreeMa--logo', class: 'mypage-item-image'
+            .mypage--item--body
+              .mypage--item--text 
+                .text
+                  出品するだけで400ポイントがもらえる！！
+                .time
+                  =icon('fas', 'clock clock1')
+                  %span
+                    2日前
+              =icon('fas', 'angle-double-right arrow')
+          %li.items
+            =link_to '#', class: 'mypage--item--link' do
+              %figure
+                =image_tag 'logo.png', alt: 'FreeMa--logo', class: 'mypage-item-image'
+            .mypage--item--body
+              .mypage--item--text 
+                .text
+                  明日5%還元クーポンの有効期限が切れます。
+                .time
+                  =icon('fas', 'clock clock1')
+                  %span
+                    3日前
+              =icon('fas', 'angle-double-right arrow')
+          %li.mypage--notification--list 
+            =link_to '#', class: 'notification__list' do
+              %div.notification__text
+                一覧を確認
+    .mypage--tab--container
+      %h2.tab--head
+        購入した商品
+      %ul.mypage--tabs
+        %li.active
+          %h3
+            =link_to '#', datatoggle: 'tab' do
+              取引中
+        %li.active
+          %h3
+            =link_to '#', datatoggle: 'tab' do
+              過去の取引
+      %div.tab--content 
+        %ul#tab--transaction--now.mypage--itemlist
+          %li.item--not--found.bold
+            取引中の商品はありません
+
+  %div.left--side 
+    %nav.mypage--nav
+      %ul.mypage--nav--list 
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            マイページ
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            お知らせ
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            やることリスト
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            いいね！一覧
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            出品する
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            下書き一覧
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            出品した商品 - 出品中
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            出品した商品 - 取引中
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            出品した商品 - 売却済み
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            購入した商品 - 取引中
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            購入して商品 - 過去の取引
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            ニュース一覧
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            評価一覧
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            ガイド
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            お問い合わせ
+            =icon('fas', 'angle-double-right arrow')
+      %h3.mypage--nav--head
+        設定 
+      %ul.mypage--nav--list 
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            プロフィール
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            発送元・お届け先住所変更
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            支払い方法
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            メール/パスワード
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            電話番号の確認
+            =icon('fas', 'angle-double-right arrow')
+        %li
+          =link_to '#', class: 'mypage--navlist--contents' do
+            ログアウト
+            =icon('fas', 'angle-double-right arrow')
+  
+= render partial: 'items/footer'
