@@ -79,14 +79,13 @@ class ItemsController < ApplicationController
     @card = Card.where(user_id: current_user.id).first
     @address = Address.where(user_id: current_user.id).first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    charge = Payjp::Charge.create(
+    Payjp::Charge.create(
       amount: @item.price,
       customer: Payjp::Customer.retrieve(@card.customer_id),
       currency: 'jpy'
     )
-    @item_buyer= Item.find(params[:id])
-    @item_buyer.update( buyer_id: current_user.id)
-
+    @item_buyer = Item.find(params[:id])
+    @item_buyer.update(buyer_id: current_user.id)
   end
 
   private
