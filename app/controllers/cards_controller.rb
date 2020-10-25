@@ -2,9 +2,7 @@ class CardsController < ApplicationController
   require "payjp"
   before_action :set_card, only: [:index, :new, :delete, :show]
 
-  def index
-  end
-
+  def index; end
 
   def new
     @card = Card.where(user_id: current_user.id).first
@@ -20,7 +18,7 @@ class CardsController < ApplicationController
         description: 'test',
         email: current_user.email,
         card: params['payjpToken'],
-        metadata:{user_id: current_user.id}
+        metadata: {user_id: current_user.id}
       )
       @card = Card.new(user_id: current_user.id, card_id: customer.default_card, customer_id: customer.id)
       if @card.save
@@ -31,7 +29,7 @@ class CardsController < ApplicationController
     end
   end
 
-  def delete  
+  def delete
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
@@ -44,7 +42,7 @@ class CardsController < ApplicationController
 
   def show
     if @card.blank?
-      redirect_to new_card_url 
+      redirect_to new_card_url
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -53,6 +51,7 @@ class CardsController < ApplicationController
   end
 
   private
+  
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
