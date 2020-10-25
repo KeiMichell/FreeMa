@@ -16,7 +16,7 @@ class CardsController < ApplicationController
     else
       customer = Payjp::Customer.create(
         card: params['payjpToken'],
-        metadata: {user_id: current_user.id}
+        metadata: {user_id: current_user.id }
       )
       @card = Card.new(user_id: current_user.id, card_id: customer.default_card, customer_id: customer.id)
       if @card.save
@@ -49,6 +49,7 @@ class CardsController < ApplicationController
   end
 
   private
+
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
