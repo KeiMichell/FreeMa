@@ -15,8 +15,6 @@ class CardsController < ApplicationController
       redirect_to new_card_url
     else
       customer = Payjp::Customer.create(
-        description: 'test',
-        email: current_user.email,
         card: params['payjpToken'],
         metadata: {user_id: current_user.id}
       )
@@ -51,7 +49,6 @@ class CardsController < ApplicationController
   end
 
   private
-  
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
