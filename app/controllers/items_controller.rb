@@ -32,6 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @brand = Brand.new
     grandchild_category = @item.category
     child_category = @item.category.parent
 
