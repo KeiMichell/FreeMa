@@ -68,8 +68,12 @@
           = f.label :"ブランド"
           %span.bettericon 任意
           %br
-          = f.fields_for :brand_attributes do |i|
-            = i.text_field :name, placeholder:"例）シャネル"
+          -if @item.persisted?
+            = f.fields_for :brand_attributes do |i|
+              = i.text_field :name, value: @item.brand.name, placeholder:"例）シャネル"
+          -else
+            = f.fields_for :brand_attributes do |i|
+              = i.text_field :name, placeholder:"例）シャネル"
         .item-form__field3__conditionbox
           = f.label :"商品の状態"
           %span.musticon 必須
