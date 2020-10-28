@@ -202,10 +202,9 @@
             発送元・お届け先住所変更
             =icon('fas', 'angle-double-right arrow')
         %li
-        - if @card.present?
-          = link_to "支払方法", card_path(@card.id), method: :get, class: 'mypage--navlist--contents'
-        - else
-          = link_to "支払方法", new_card_path, class: 'mypage--navlist--contents'
+          =link_to "/cards", class: 'mypage--navlist--contents' do
+            支払方法
+            =icon('fas', 'angle-double-right arrow')
         %li
           =link_to '#', class: 'mypage--navlist--contents' do
             メール/パスワード
