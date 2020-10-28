@@ -15,11 +15,10 @@ class ItemsController < ApplicationController
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
     @user = current_user
-  
-    @parent_category = @item.category.siblings
-    @parent_category.each do |category|
-      @grand_childen = Item.find_by(category_id: category.id)
-    end
+    # @parent_category = @item.category.siblings
+    # @parent_category.each do |category|
+    #   @grand_children = Item.find_by(category_id: category.id)
+    # end
   end
 
   def new
