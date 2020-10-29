@@ -11,9 +11,14 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @items = Item.where(category_id: @item.category_id).where.not(id: @item.id).includes(:images).order("RAND()").limit(5)
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
     @user = current_user
+    # @parent_category = @item.category.siblings
+    # @parent_category.each do |category|
+    #   @grand_children = Item.find_by(category_id: category.id)
+    # end
   end
 
   def new
