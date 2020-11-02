@@ -83,7 +83,7 @@
 }
 
 //パンくず
-ul{
+.bread__crumbs{
    display: flex;
    justify-content: start;
    max-width: 1040px;
@@ -92,7 +92,7 @@ ul{
    @extend.clearfix;
 }
 
-li{
+.bread__crumbs__list{
    padding: 0 15px 0 0;
 }
 
@@ -145,18 +145,19 @@ li{
    .mypage--tabs{
       justify-content: space-around;
       height: 50px;
+      display: flex;
    }
-      .tab--content{
-         .mypage--item--listtab{
+   .tab--content{
+      .mypage--item--listtab{
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         .items{   
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            .items{   
-               display: flex;
-               justify-content: space-between;
-            }
+            justify-content: space-between;
          }
       }
+   }
 }
 
 
@@ -228,6 +229,11 @@ li{
       padding: 0 16px;
       font-size: 16px;
       text-align: center;
+   }
+   .mypage--tabs{
+      justify-content: space-around;
+      height: 50px;
+      display: flex;
    }
    .tab--content{
       .mypage--itemlist{
