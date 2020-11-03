@@ -24,7 +24,7 @@ class PurchaseController < ApplicationController
     @item.update(buyer_id: current_user.id)
     redirect_to root_path
   end
-
+  
   private
   
   def set_card
