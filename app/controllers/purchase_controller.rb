@@ -3,7 +3,6 @@ class PurchaseController < ApplicationController
   before_action :set_card, :set_item
 
   def index
-    @user = current_user
     @address = Address.find_by(user_id: current_user.id)
     if @card.blank?
       redirect_to new_card_path
