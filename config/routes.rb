@@ -22,8 +22,9 @@ Rails.application.routes.draw do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
   end
-  resources :cards, only: [:index, :new, :show] do
+  resources :cards, only: [:new, :show] do
     collection do
+      get 'index', to: 'cards#index'
       post 'create', to: 'cards#create'
       post 'delete', to: 'cards#delete'
     end
