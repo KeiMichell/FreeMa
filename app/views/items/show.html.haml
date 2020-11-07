@@ -40,10 +40,10 @@
 
           -if user_signed_in?
             -if ( @item.seller_id != current_user.id ) && ( @item.buyer_id.nil? )
-              = link_to purchase_item_path(@item) do
+              = link_to item_purchase_index_path(@item) do
                 .item-purchase-btn
                   購入画面に進む
-
+                  
           %table.table
             %tbody.table__body
               %tr.table__body--row
