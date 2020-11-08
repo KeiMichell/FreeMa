@@ -36,7 +36,7 @@
           = f.label :"商品名"
           %span.musticon 必須
           %br
-          = f.text_field :name
+          = f.text_field :name, placeholder:"商品名（40文字まで）"
           - if @item.errors.include?(:name)
             %p.error-message
               = @item.errors.full_messages_for(:name).first
@@ -68,8 +68,12 @@
           = f.label :"ブランド"
           %span.bettericon 任意
           %br
-          = f.fields_for :brand_attributes do |i|
-            = i.text_field :name, placeholder:"例）シャネル"
+          -if @item.persisted?
+            = f.fields_for :brand_attributes do |i|
+              = i.text_field :name, value: @item.brand.name, placeholder:"例）シャネル"
+          -else
+            = f.fields_for :brand_attributes do |i|
+              = i.text_field :name, placeholder:"例）シャネル"
         .item-form__field3__conditionbox
           = f.label :"商品の状態"
           %span.musticon 必須

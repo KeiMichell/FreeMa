@@ -5,13 +5,20 @@ class ItemsController < ApplicationController
   before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
 
   def index
-    @items = Item.includes(:images).order('created_at DESC')
+    @items = Item.includes(:images).order("RAND()").limit(5)
+    @user = current_user
   end
 
   def show
     @item = Item.find(params[:id])
+    @items = Item.where(category_id: @item.category_id).where.not(id: @item.id).includes(:images).order("RAND()").limit(5)
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
+    @user = current_user
+    # @parent_category = @item.category.siblings
+    # @parent_category.each do |category|
+    #   @grand_children = Item.find_by(category_id: category.id)
+    # end
   end
 
   def new
@@ -30,6 +37,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @brand = Brand.new
+    @brand.items.new
     grandchild_category = @item.category
     child_category = @item.category.parent
 
@@ -71,11 +80,6 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     redirect_to root_path
-  end
-
-  def purchase
-    @item = Item.find(params[:id])
-    @user = current_user
   end
 
   private

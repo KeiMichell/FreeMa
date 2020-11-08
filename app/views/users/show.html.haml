@@ -2,7 +2,8 @@
   .header--inner
     .header--top
       .header--logo
-        = image_tag 'logo.png', alt: 'FreeMa-logo', class: 'header--logo__image'
+        = link_to root_path do
+          = image_tag 'logo.png', alt: 'FreeMa-logo', class: 'header--logo__image'
       .header--searchbox
         .header-form
           = text_field_tag :content, '', class: 'header--form__search', placeholder: '何かお探しですか？'
@@ -143,7 +144,7 @@
             やることリスト
             =icon('fas', 'angle-double-right arrow')
         %li
-          =link_to '#', class: 'mypage--navlist--contents' do
+          =link_to item_favorites_path(@item), class: 'mypage--navlist--contents' do
             いいね！一覧
             =icon('fas', 'angle-double-right arrow')
         %li
@@ -202,8 +203,8 @@
             発送元・お届け先住所変更
             =icon('fas', 'angle-double-right arrow')
         %li
-          =link_to '#', class: 'mypage--navlist--contents' do
-            支払い方法
+          =link_to cards_path, class: 'mypage--navlist--contents' do
+            支払方法
             =icon('fas', 'angle-double-right arrow')
         %li
           =link_to '#', class: 'mypage--navlist--contents' do
@@ -218,6 +219,4 @@
             ログアウト
             =icon('fas', 'angle-double-right arrow')
   
-
-.footer
-  =render partial: 'items/footer'
+= render partial: 'items/footer'

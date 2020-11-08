@@ -1,9 +1,9 @@
-
 .header
   .header-box
     .header-main
       .header-icon
-        = image_tag 'logo.png', alt: 'FreeMa-logo', class: 'header--logo__image'
+        = link_to root_path do
+          = image_tag 'logo.png', alt: 'FreeMa-logo', class: 'header--logo__image'
       .header-searchbox
         .header-form
           = text_field_tag :content, '', class: 'header--form__search', placeholder: 'キーワードから探す'
@@ -61,7 +61,7 @@
         %ul.listsRight
           -if user_signed_in?
             %li.listsRight__item--new
-              =link_to "マイページ", "user"
+              =link_to "マイページ", user_path(@user.id)
             %li.listsRight__item--login
               = link_to "ログアウト", destroy_user_session_path, method: :delete
           -else

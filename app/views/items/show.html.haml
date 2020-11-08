@@ -21,7 +21,6 @@
                   - @item.images[1..4].each do |image|
                     %li
                       =image_tag "#{image.image}", size: '100x100', alt: "Sub Image"
-        
           .itemBox__price
             %span.itemBox__price--number
               = "¥#{@item.price.to_s(:delimited)}"
@@ -33,15 +32,18 @@
                   送料込み
                 -elsif @item.delivery_fee_id == 2
                   着払い
+          -if @item.buyer_id.present?
+            .itemBox__body__sold-message
+              売り切れました
           %p.itemDetail
             =@item.detail
 
           -if user_signed_in?
-            -if @item.seller_id != current_user.id
-              = link_to purchase_item_path(@item) do
+            -if ( @item.seller_id != current_user.id ) && ( @item.buyer_id.nil? )
+              = link_to item_purchase_index_path(@item) do
                 .item-purchase-btn
                   購入画面に進む
-
+                  
           %table.table
             %tbody.table__body
               %tr.table__body--row
@@ -91,7 +93,7 @@
                     不適切な商品の通報
           
           -if user_signed_in?
-            -if @item.seller_id == current_user.id
+            -if ( @item.seller_id == current_user.id ) && ( @item.buyer_id.nil? )
               %ul.item-edit-list
                 %li
                   = link_to '編集', edit_item_path(@item), class: "item-edit-list__btn"
@@ -101,7 +103,7 @@
 
         .commentBox
           .commentBox-area
-            - if @comments
+            - if @comments && user_signed_in?
               - @comments.each do |comment|
                 .commentBox__index
                   %p.commentBox__index__comment-name
@@ -149,19 +151,34 @@
               %span 後ろの商品
               %i.fa.fa-angle-right
 
-        .relatedItems
+        .relatedBox
           = link_to "#", class: "relatedItems__link" do
-            ベビー・キッズをもっと見る
-          
-            = link_to "#", class: "relatedItems__product" do
-              = image_tag src='/assets/tozan_kutsu.png', alt: "Left Image", class: "relatedItems__product--image"
-              .relatedItems__product--body
-                .relatedItems__product--name product3
-                %ul.relatedItems__product--details
-                  %li
-                    ¥3000
-                  %li
-                    %i.fa.fa-star.LikeIcon
-                %p.relatedItems__product--tax (税込)
+            - title = @item.category.parent.parent.name
+            = "#{title}をもっと見る"
+
+        .relatedItems
+          - @items.each do |item|
+            .relatedItems__product
+              .relatedItems__product__img
+                = link_to item_path(item) do
+                  = image_tag "#{item.images[0].image}"
+              .relatedItems__product__body
+                %h3.relatedItems__product__body__name
+                  = item.name
+                .relatedItems__product__body__data
+                  .relatedItems__product__body__data__price
+                    = "#{item.price.to_s(:delimited)}円" 
+                    %p (税込)
+                  .relatedItems__product__body__data__favorite
+                    -if item.favorites.exists?
+                      = icon('fa', 'star')
+                    -else
+                      = icon('far', 'star')
+                    %span 
+                      = item.favorites.count
+              -if item.buyer_id.present?
+                .relatedItems__product__sold
+                  .relatedItems__product__sold__inner 
+                    SOLD
 
   = render partial: 'footer'
