@@ -36,7 +36,7 @@
           = f.label :"商品名"
           %span.musticon 必須
           %br
-          = f.text_field :name
+          = f.text_field :name, placeholder:"商品名（40文字まで）"
           - if @item.errors.include?(:name)
             %p.error-message
               = @item.errors.full_messages_for(:name).first
