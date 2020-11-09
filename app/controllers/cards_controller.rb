@@ -10,7 +10,7 @@ class CardsController < ApplicationController
   end
 
   def create
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if params['payjpToken'].blank?
       redirect_to new_card_url
     else
@@ -25,7 +25,7 @@ class CardsController < ApplicationController
   end
 
   def delete
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
     if @card.destroy
@@ -39,7 +39,7 @@ class CardsController < ApplicationController
     if @card.blank?
       redirect_to new_card_url
     else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
     end
