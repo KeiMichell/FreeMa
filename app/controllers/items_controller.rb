@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :set_item, except: [:index, :new, :create, :show, :purchase, :get_category_children, :get_category_grandchildren, :favorites]
+  before_action :set_item, except: [:index, :new, :create, :show, :purchase, :get_category_children, :get_category_grandchildren]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
 
@@ -80,11 +80,6 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     redirect_to root_path
-  end
-
-  def favorites
-    @favorites = Favorite.where(user_id: current_user.id)
-    @user = current_user
   end
 
   private
