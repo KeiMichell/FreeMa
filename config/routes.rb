@@ -11,9 +11,6 @@ Rails.application.routes.draw do
     end
     resources :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
-    collection do
-      get 'favorites'
-    end
   end
   root 'items#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -32,4 +29,5 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: :show
+  get 'favorites/index'
 end
